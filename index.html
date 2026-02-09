@@ -90,8 +90,8 @@
 		</a>
 	</div>
 	<div class="kira-count">
-		<div><span>文章</span>4</div>
-		<div><span>标签</span>3</div>
+		<div><span>文章</span>5</div>
+		<div><span>标签</span>4</div>
 		<div><span>分类</span>0</div>
 	</div>
 	<div class="kira-list">
@@ -235,7 +235,7 @@
 			
 	<div class="kira-widget-wrap">
 		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
-			<a href="/tags/%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B/" style="font-size: 10px;">业务流程</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">数据分析</a> <a href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/" style="font-size: 10px;">方法论</a>
+			<a href="/tags/%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B/" style="font-size: 10px;">业务流程</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">数据分析</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/" style="font-size: 10px;">方法论</a>
 		</div>
 		
 	</div>
@@ -248,7 +248,7 @@
 			文章归档
 		</h3>
 		<div class="kira-widget">
-			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">1</span></li></ul>
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">1</span></li></ul>
 		</div>
 	</div>
 
@@ -266,11 +266,11 @@
   <h4>📊 网站统计</h4>
   <div class="stat-item">
     <span class="stat-label">文章总数</span>
-    <span class="stat-value"><%= site.posts.length %></span>
+    <span class="stat-value" id="post-count">0</span>
   </div>
   <div class="stat-item">
     <span class="stat-label">运行天数</span>
-    <span class="stat-value" id="run-days">计算中...</span>
+    <span class="stat-value" id="run-days">0</span>
   </div>
   <div class="stat-item">
     <span class="stat-label">访客数量</span>
@@ -284,17 +284,59 @@
   <p>完善个人项目展示</p>
 </div>
 
-<script src="/js/custom.js"></script>
+<script>
+// 等待页面加载完成
+document.addEventListener('DOMContentLoaded', function() {
+  // 计算文章总数
+  const postElements = document.querySelectorAll('.post-item, article, .post, .md');
+  document.getElementById('post-count').textContent = postElements.length || '0';
+  
+  // 计算运行天数
+  function calculateRunDays() {
+    const startDate = new Date('2025-12-09'); // 修改为你的建站日期
+    const today = new Date();
+    const diffTime = Math.abs(today - startDate);
+    return Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  }
+  document.getElementById('run-days').textContent = calculateRunDays();
+  
+  // 访客计数（示例，你需要接入真实的统计服务）
+  let visitorCount = localStorage.getItem('visitorCount') || 10; // 初始值
+  visitorCount = parseInt(visitorCount) + 1;
+  localStorage.setItem('visitorCount', visitorCount);
+  document.getElementById('visitor-count').textContent = visitorCount;
+  
+  // 或者使用不蒜子统计（推荐）
+  try {
+    // 不蒜子统计脚本
+    const script = document.createElement('script');
+    script.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js';
+    script.async = true;
+    document.head.appendChild(script);
+    
+    // 延迟显示不蒜子统计
+    setTimeout(() => {
+      const busuanziSiteUv = document.querySelector('.busuanzi_value_site_uv');
+      const busuanziSitePv = document.querySelector('.busuanzi_value_site_pv');
+      if (busuanziSiteUv) {
+        document.getElementById('visitor-count').textContent = busuanziSiteUv.textContent;
+      }
+    }, 1000);
+  } catch (e) {
+    console.log('不蒜子统计加载失败:', e);
+  }
+});
+</script>
 
 <style>
-.sidebar-stats, .sidebar-notice {
+.sidebar-stats {
   background: rgba(49, 174, 255, 0.05);
   border-radius: 8px;
   padding: 15px;
   margin-bottom: 15px;
 }
 
-.sidebar-stats h4, .sidebar-notice h4 {
+.sidebar-stats h4 {
   color: rgb(49, 174, 255);
   margin-bottom: 10px;
   font-size: 1rem;
@@ -316,6 +358,21 @@
 .stat-value {
   color: rgb(49, 174, 255);
   font-weight: bold;
+}
+
+.sidebar-notice {
+  background: rgba(49, 174, 255, 0.05);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.sidebar-notice h4 {
+  color: rgb(49, 174, 255);
+  margin-bottom: 10px;
+  font-size: 1rem;
+  border-left: 3px solid rgb(49, 174, 255);
+  padding-left: 8px;
 }
 
 .sidebar-notice p {
@@ -350,10 +407,10 @@
                     <img
                         data-src="https://kira.host/assets/Pictures/Others/-f0d5cc34c6e5aa7_compressed.jpg"
                         data-sizes="auto"
-                        alt="数据库"
+                        alt="SQL"
                         class="lazyload"
                     />
-                    <h1>数据库</h1>
+                    <h1>SQL</h1>
                 </div>
                 
             </a>
@@ -365,11 +422,48 @@
                 </a>
                 <a>
                     <i class="kirafont icon-edit-fill"></i>
-                    321 字
+                    0 字
                 </a>
                 <a>
                     <i class="kirafont icon-time-circle-fill"></i>大概
                     1 分钟
+                </a>
+            </div>
+    
+            
+        </div>
+        <div class="kira-hr"></div>
+    
+        <div class="kira-post">
+            <a href="/post/database-fundamentals.html">
+                
+                <div
+                    class="kira-post-cover mdui-ripple"
+                    style="padding-bottom: '56.25%'"
+                >
+                    <img
+                        data-src="https://kira.host/assets/Pictures/Others/-f0d5cc34c6e5aa7_compressed.jpg"
+                        data-sizes="auto"
+                        alt="数据库基础知识"
+                        class="lazyload"
+                    />
+                    <h1>数据库基础知识</h1>
+                </div>
+                
+            </a>
+
+            <div class="kira-post-meta kira-rainbow">
+                <a>
+                    <i class="kirafont icon-calendar-fill"></i>
+                    2026年02月09日
+                </a>
+                <a>
+                    <i class="kirafont icon-edit-fill"></i>
+                    1.2k 字
+                </a>
+                <a>
+                    <i class="kirafont icon-time-circle-fill"></i>大概
+                    4 分钟
                 </a>
             </div>
     
