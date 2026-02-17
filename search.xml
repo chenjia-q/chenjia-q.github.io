@@ -1,22 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/post/undefined.html</url>
-    <content><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post$ hexo new "My New Post"
+    <title>MySQL</title>
+    <url>/post/MySQL.html</url>
+    <content><![CDATA[1. SQL的分类及应用(1) 数据定义语言（DDL）：用于创建、修改、删除数据库中的各种对象（数据库、表、视图、索引等）。常用的命令有 CREATE、ALTER、DROP。
+(2) 数据操作语言（DML）：用于操作数据库表中的记录。常用的命令有 INSERT、UPDATE、DELETE。
+(3) 数据查询语言（DQL）：用于查询数据库表中的记录，是业务分析人员最常用的语言类型，贯穿信息获取、数据获取、数据理解、数据清洗等多个环节，其主体结构为 SELECT &lt;字段名&gt; FROM &lt;表或视图名&gt; WHERE &lt;查询条件&gt;。
+(4) 数据控制语言（DCL）：用于定义数据库访问权限和安全级别。常用的命令有 GRANT、REVOKE。
+2. SQL的特点(1) 书写要求SQL尽管功能非常强，但是其设计非常巧妙，语言十分简洁，语法简单，对格式容忍度很高，对缩进、换行、大小写等均不敏感。SQL语句可以单行或多行书写，用英文的分号结尾，关键词用空格分隔。
+(2) 注释注释语句是不可执行的语句，它分为单行注释和多行注释两种。在代码的内容之外进行注释的编写，不仅方便别人理解自己的脚本语句，也方便自己往后执行脚本语句时能够快速进入状态。
+基础语法格式：
 
-More info: Writing
-Run server$ hexo server
+单行注释：-- 注释内容 或 # 注释内容
+多行注释：/* 注释内容 */
 
-More info: Server
-Generate static files$ hexo generate
+3. 数据仓库(1) 数据仓库的定义数据仓库是一个面向主题的、集成的、稳定的、反应历史变化的数据集合。因为数据仓库侧重于数据分析工作，主要用于对企业的发展历程和未来趋势做出定量分析预测，所以数据仓库中的数据按照一定的主题进行组织和存储，会对原有分散的数据库数据经过系统加工、整理，消除源数据的不一致性。
+通常来讲，数据仓库根据其作用的不同，最少分为3个层级，即ODS（Operational Data Store）层、DSA（Data Staging Area）层和 EDW（Enterprise Data Warehouse）层。其中ODS层用来存储业务数据库在一个时间范围内新增或更新的数据，相当于业务数据库的一个非实时的缓存，因此其结构和原表结构类似，会对来自不同业务系统所产生的数据进行初步的整理，如筛选分析所需的字段，统一不同来源数据的编码等。DSA层用于存储ODS层数据经过了抽取、清洗、转换等流程后所产生的格式和类型统一的数据。EDW层用于存储DSA层数据在根据维度和度量对数据进行重新抽象和冗余化简之后利于分析数据抽取和展示的库表。
+目前，常用的开源数据仓库有由Apache基金会所开发的Hadoop，该数据仓库使用Hive作为数据分析系统，其查询语法HiveSQL类似于SQL。
+(2) 数据仓库与数据库的区别数据仓库与数据库的区别实际上就是OLTP和OLAP的区别。
 
-More info: Generating
-Deploy to remote sites$ hexo deploy
+操作型处理（OLTP）：称为联机事务处理，也可以称为面向交易的处理系统，针对具体事务在数据库联机的日常操作，通常对少数记录进行查询、修改。用户较为关心操作的响应时间、数据的安全性、完整性和并发的支持用户数问题。
 
-More info: Deployment
+分析型处理（OLAP）：称为联机分析处理，这种分析处理是针对事后的，它需要关注时间段内产生的所有有效数据，通过对数据进行分析来判断操作任务的过程是否正常，流程是否有可优化的地方，甚至对企业未来的业务发展方向进行预测。
+
+
+4. DDL4.1 定义数据库(1) 创建数据库CREATE DATABASE &lt;数据库名称&gt;
+(2) 查看数据库SHOW DATABASES
+(3) 选择数据库USE &lt;数据库名称&gt;
+(4) 删除数据库DROP DATABASE &lt;数据库名称&gt;
+4.2 数据表(1) 数据字典数据字典是一个用来描述数据表信息的表格，可以快速帮助分析人员快速梳理数据表的结构及字段的基础信息。
+(2) 创建表CREATE TABLE &lt;表名&gt; (    &lt;字段1&gt; &lt;数据类型1&gt; &lt;约束条件1&gt;,    &lt;字段2&gt; &lt;数据类型2&gt; &lt;约束条件2&gt;,    …,    &lt;字段n&gt; &lt;数据类型n&gt; &lt;约束条件n&gt;);(3) 查看表SHOW TABLES
+(4) 查看表结构DESCRIBE &lt;表名&gt;
+(5) 修改表
+修改表名：ALTER TABLE &lt;原表名&gt; RENAME &lt;新表名&gt;
+修改字段名：ALTER TABLE &lt;表名&gt; CHANGE &lt;原字段名&gt; &lt;新字段名&gt; &lt;新数据类型&gt;
+修改字段类型：ALTER TABLE &lt;表名&gt; MODIFY &lt;字段名&gt; &lt;新数据类型&gt;
+添加新字段：ALTER TABLE &lt;表名&gt; ADD &lt;新字段名&gt; &lt;数据类型&gt; [约束条件] [FIRST | AFTER &lt;字段名&gt;]
+修改字段排列位置：ALTER TABLE &lt;表名&gt; MODIFY &lt;字段名&gt; &lt;数据类型&gt; FIRST | AFTER &lt;参照字段名&gt;
+删除字段：ALTER TABLE &lt;表名&gt; DROP &lt;字段名&gt;
+(6) 删除表DROP TABLE [IF EXISTS] &lt;表名&gt; [, &lt;表名1&gt;, &lt;表名2&gt;, … &lt;表名n&gt;]
+5. 数据类型(1) 数值型：
+整数型：TINYINT, SMALLINT, MEDIUMINT, INT, BIGINT
+小数型：FLOAT, DECIMAL
+(2) 字符串型：CHAR, VARCHAR, TEXT
+(3) 日期时间型：DATE, DATETIME, TIME, TIMESTAMP
+6. 约束条件PRIMARY KEY：主键约束
+NOT NULL：非空约束
+UNIQUE：唯一约束
+AUTO_INCREMENT：自动增长约束
+DEFAULT：默认约束
+7.DML7.1 添加数据(1) 手动添加数据insert into &lt;表名&gt; [&lt;字段1&gt;,&lt;字段2&gt;,…&lt;字段n&gt;] values(&lt;值1&gt;,&lt;值2&gt;,…&lt;值n&gt;)(2) 批量导入数据load data infile’文件路径’into table〈表名〉[fields terminated by’分隔符’ignore x lines]
+7.2 将查询结果添加到表中(1) 将查询结果添加到已存在的表中insert into &lt;新表名&gt;[&lt;字段1&gt;,&lt;字段2&gt;,…&lt;字段n&gt;] select &lt;字段1&gt;,&lt;字段2&gt;,…&lt;字段n&gt; from &lt;原表名&gt; [where&lt;查询条件&gt;](2) 将查询结果添加到新表中create table &lt;新表名&gt; asselect &lt;字段1&gt;,&lt;字段2&gt;,…&lt;字段n&gt; from &lt;原表名&gt; [where&lt;查询条件&gt;]
+7.3 更新数据update &lt;表名&gt; set &lt;字段1&gt; = &lt;值1&gt;[,&lt;字段2&gt; = &lt;值2&gt;,…&lt;字段n&gt; = &lt;值n&gt;][where&lt;更新条件&gt;]
 ]]></content>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
   </entry>
   <entry>
     <title>数据库基础知识</title>
@@ -88,6 +127,24 @@ HBase
       <tags>
         <tag>数据库</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/post/undefined.html</url>
+    <content><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick StartCreate a new post$ hexo new "My New Post"
+
+More info: Writing
+Run server$ hexo server
+
+More info: Server
+Generate static files$ hexo generate
+
+More info: Generating
+Deploy to remote sites$ hexo deploy
+
+More info: Deployment
+]]></content>
   </entry>
   <entry>
     <title>机器学习</title>
@@ -208,16 +265,49 @@ Q14、什么是漏斗分析？有哪些注意的点？通过拆分业务流程�
 Q15、数据分析这么枯燥，你为什么想做呢？数字本身是枯燥的，但是数字背后的信息却是很有趣也很重要的。数据分析现在已经逐渐变成一种能力，一种通用的技能，通过洞察数据背后的业务价值，进而提出有指导性的建议，帮助业务发展是一件很有成就感的事。
 Q16、你怎么理解统计学？生活中统计学应用举例？作为数据分析师，所有的事实都应该由数据说话，但数据本身是没有意义的，更不会告诉我们数据的高低好坏，我们需要基于数据给出科学可靠的结论，这个过程就不得不用到统计学知识。好的什么程度算好，坏到什么程度算坏，高到什么程度算是有显著性差异，这些都不是我们个人凭主观感觉就能够给出来的，需要经过统计学的知识谨慎给出结论，这样才不至于给出错误的结论而导致错误的决策。
 如果用平均值算财富的话，我和马云的财富平均下来，我也是亿万富翁，这显然不科学，因为个人财富并不服从正态分布，我们用平均值无法代表一般水平，这个时候如果使用中位值，看全国排名 50%的人的收入，可能更足以说明大家的一般水平是如何。
+Q17、 使用 AB Test 评估算法效果1）需求某个购物 APP 最近优化了“猜你喜欢”模块的推荐算法，希望进一步提升推荐的精准度，进而提升销售额。现在需要通过 AB Test（50%用户保留原先推荐算法的为控制组，50%用户使用新的推荐算法为实验组）来对新的推荐效果进行评估。
+2）解题思路指标：推荐商品的销售额、推荐商品点击率、推荐商品的转化率分析过程：
+
+设原假设为使用新的推荐算法后上述指标降低或不变，备择假设为使用新的推荐算法后上述指标增加。
+选择显著性水平临界值为 5%，并根据指标的预期提升确定样本量和试验周期。
+样本合理分流，AB 测试上线，采集数据。
+使用 T 检验，计算 P 值，进行效果验证。
+分析结论，如果 P 值小于 5%，那么原假设不成立，备择假设成立，即使用新算法后指标提升。反之无法推翻原假设，不能证明使用新算法后指标提升.
+
+Q18、 如何评估一场活动的效果1）需求某 APP 近期上线了一个拉新活动，并在各个渠道进行了推广投放，活动结束后，作为数据分析师，你如何评估这场活动的效果？
+2）解题思路如果要对一个活动效果进行分析，无非是要回答以下 3 个问题：
+
+活动效果怎么样？要不要继续做？
+如果可以继续做，活动的做的好的方面是哪些？问题或者瓶颈环节在哪？
+针对问题环节的改进方案是什么？具体展开来讲，可以从以下几个方面
+活动关键指标达成分析活动关键核心指标达成情况，比如拉新多少用户，达成多少 GMV?ROI 如何？
+活动关键流程漏斗分析活动的关键流程是什么？以及各个流程的漏斗分析，定位问题发生的环节。
+活动的渠道、用户分析活动在哪些渠道推送？活动推送给哪些用户？用户画像是啥样的？各渠道用户的质量/ROI 如何？
+活动策略、节奏分析活动玩法的裂变效果如何？利益点是否有吸引力？活动整个过程节奏把控如何，前期预热、中期爆发和尾期是否过短/过长，运营应该在何时进行适当干预。
+
+Q19 销售额下降了如何分析？1）需求如果我们发现，某店铺 2020 年 11 的销售额同比去年 11 月下降了 60%，如果你是这块业务的数据分析师，你会如何分析？请写出你的分析思路框架。
+2）解题思路：
+
+先确认数据来源是否可靠，指标口径是否一致，很多时候，大家只是道听途说，讲的不是同一个事情，埋头就开始分析，反而浪费了时间精力，需要首先确认问题是否真实存在。
+如果数据来源可靠，指标口径一致，先看外部市场环境，是否是整体市场大盘在下降，受到大盘的影响。
+如果不是外部因素，看内部问题，对内部因素进行指标成分拆解，可以按照以下的方式进行拆解。
+具体可能的拆解方式如下：销售额 = 访客数 * 下单率 * 客单价 - 退货金额访客数 = 新客户 + 老客户， 新客户 = 渠道的流量 * 转化率下单率 = 页面访问量 * 转化率订单取消率 = 订单取消数/订单总数
+针对指标的变化进行提建议，定位到具体的原因后，针对性的给出改进策略方案，如开展促销活动、商品。
+
+Q20 估算一个星巴克门店的销售额1）需求某 CBD 楼下有一个星巴克门店，面积约为 40 平方米。请预估该门店每周的营业额。
+2）解题思路：费米思想的两个步骤：
+
+把问题进行拆解，直到拆解到不能拆解需要估算的基本问题
+对基本问题的估算，不要估算其本身，而是先估算其上下界，然后在上下界的范围内估算出数值。营业额 = 消费人数 * 平均消费金额 （区分工作日和周末）消费人数 = 营业时间 * 单位时间消费人数 （区分高峰时段 + 低峰时段）
+
+3）估算：每天按照 12h 营业时间计算，其中客流量大有 4h，客流量小 8h（正常估）。休息日平均营业额/4 工作日平均营业额（正常估）。工作日流量大的时候，每 3 分钟接高一人次，人均消费 30 元（高估）。一个店 40 平米，我们假设 50%的比例，那就是 20 低平米，可以站下 10 个人（低估）。那这样工作日高峰时间段每小时消费人数= 1h/3min * 10= 20 * 10= 200 个，非高峰估算60 个。那工作日一天 营业额 = 4 h * 200 个 * 30 元 + 8 h * 60 个 * 30 元 = 38400一周的营业额 = 38400 * 5 + 38400/4 * 2 = 211200。
+Q24 什么是同比、环比，意义是什么？ 环比：与相连续的上一个统计周期进行对比，环比增长速度=（本期数－上期数）÷上期数×100% ，反映本期比上期增长了多少，如 2021 年 12 月和 2021 年 11月对比，环比的好处是可以更直观的表明阶段性的变换，但是会受季节性因素影响。
+ 同比：是对去年同期的一个统计阶段进行对比，同比增长率=（本期数－同期数）÷同期数×100%，如今年的这个月和去年的这个月，同比的好处是可以排除一部分季节因素。
 ]]></content>
       <tags>
         <tag>数据分析</tag>
         <tag>业务流程</tag>
         <tag>方法论</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>SQL</title>
-    <url>/post/undefined.html</url>
-    <content><![CDATA[]]></content>
   </entry>
 </search>

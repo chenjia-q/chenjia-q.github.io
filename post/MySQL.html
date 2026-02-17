@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/css/layout.css">
 
 		
-		<title> 标签：方法论 -  xiaoqing-blog</title>
+		<title> MySQL -  xiaoqing-blog</title>
 		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
 		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
 		
@@ -395,45 +395,197 @@ document.addEventListener('DOMContentLoaded', function() {
 			<div class="kira-content">
 				<div id="kira-top-header"></div>
 				<div class="kira-main-content">
-					<div class="kira-posts">
-    
-        <div class="kira-post">
-            <a href="/post/data-analysis.html">
-                
-                <div
-                    class="kira-post-cover mdui-ripple"
-                    style="padding-bottom: '56.25%'"
-                >
-                    <img
-                        data-src="https://kira.host/assets/Pictures/Others/-f0d5cc34c6e5aa7_compressed.jpg"
-                        data-sizes="auto"
-                        alt="数据分析"
-                        class="lazyload"
-                    />
-                    <h1>数据分析</h1>
-                </div>
-                
-            </a>
+					
+<link rel="stylesheet" href="/css/kira-image.css">
 
-            <div class="kira-post-meta kira-rainbow">
-                <a>
-                    <i class="kirafont icon-calendar-fill"></i>
-                    2026年02月01日
-                </a>
-                <a>
-                    <i class="kirafont icon-edit-fill"></i>
-                    4.6k 字
-                </a>
-                <a>
-                    <i class="kirafont icon-time-circle-fill"></i>大概
-                    18 分钟
-                </a>
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
             </div>
-    
-            
         </div>
-        <div class="kira-hr"></div>
-    
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="https://kira.host/assets/Pictures/Others/-f0d5cc34c6e5aa7_compressed.jpg"
+				data-sizes="auto"
+				alt="MySQL"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>MySQL</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2026年02月09日</a>
+			<a><i class="kirafont icon-edit-fill"></i>1.7k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 7 分钟</a>
+		</div>
+		<html><head></head><body><h2><span id="1-sql%E7%9A%84%E5%88%86%E7%B1%BB%E5%8F%8A%E5%BA%94%E7%94%A8">1. SQL的分类及应用</span></h2><p>(1) <strong>数据定义语言（DDL）</strong>：用于创建、修改、删除数据库中的各种对象（数据库、表、视图、索引等）。常用的命令有 <code>CREATE</code>、<code>ALTER</code>、<code>DROP</code>。</p>
+<p>(2) <strong>数据操作语言（DML）</strong>：用于操作数据库表中的记录。常用的命令有 <code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>。</p>
+<p>(3) <strong>数据查询语言（DQL）</strong>：用于查询数据库表中的记录，是业务分析人员最常用的语言类型，贯穿信息获取、数据获取、数据理解、数据清洗等多个环节，其主体结构为 <code>SELECT &lt;字段名&gt; FROM &lt;表或视图名&gt; WHERE &lt;查询条件&gt;</code>。</p>
+<p>(4) <strong>数据控制语言（DCL）</strong>：用于定义数据库访问权限和安全级别。常用的命令有 <code>GRANT</code>、<code>REVOKE</code>。</p>
+<h2><span id="2-sql%E7%9A%84%E7%89%B9%E7%82%B9">2. SQL的特点</span></h2><h3><span id="1-%E4%B9%A6%E5%86%99%E8%A6%81%E6%B1%82">(1) 书写要求</span></h3><p>SQL尽管功能非常强，但是其设计非常巧妙，语言十分简洁，语法简单，对格式容忍度很高，对缩进、换行、大小写等均不敏感。SQL语句可以单行或多行书写，用英文的分号结尾，关键词用空格分隔。</p>
+<h3><span id="2-%E6%B3%A8%E9%87%8A">(2) 注释</span></h3><p>注释语句是不可执行的语句，它分为单行注释和多行注释两种。在代码的内容之外进行注释的编写，不仅方便别人理解自己的脚本语句，也方便自己往后执行脚本语句时能够快速进入状态。</p>
+<p><strong>基础语法格式</strong>：</p>
+<ul>
+<li><strong>单行注释</strong>：<code>-- 注释内容</code> 或 <code># 注释内容</code></li>
+<li><strong>多行注释</strong>：<code>/* 注释内容 */</code></li>
+</ul>
+<h2><span id="3-%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93">3. 数据仓库</span></h2><h3><span id="1-%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E7%9A%84%E5%AE%9A%E4%B9%89">(1) 数据仓库的定义</span></h3><p>数据仓库是一个面向主题的、集成的、稳定的、反应历史变化的数据集合。因为数据仓库侧重于数据分析工作，主要用于对企业的发展历程和未来趋势做出定量分析预测，所以数据仓库中的数据按照一定的主题进行组织和存储，会对原有分散的数据库数据经过系统加工、整理，消除源数据的不一致性。</p>
+<p>通常来讲，数据仓库根据其作用的不同，最少分为3个层级，即ODS（Operational Data Store）层、DSA（Data Staging Area）层和 EDW（Enterprise Data Warehouse）层。其中ODS层用来存储业务数据库在一个时间范围内新增或更新的数据，相当于业务数据库的一个非实时的缓存，因此其结构和原表结构类似，会对来自不同业务系统所产生的数据进行初步的整理，如筛选分析所需的字段，统一不同来源数据的编码等。DSA层用于存储ODS层数据经过了抽取、清洗、转换等流程后所产生的格式和类型统一的数据。EDW层用于存储DSA层数据在根据维度和度量对数据进行重新抽象和冗余化简之后利于分析数据抽取和展示的库表。</p>
+<p>目前，常用的开源数据仓库有由Apache基金会所开发的Hadoop，该数据仓库使用Hive作为数据分析系统，其查询语法HiveSQL类似于SQL。</p>
+<h3><span id="2-%E6%95%B0%E6%8D%AE%E4%BB%93%E5%BA%93%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E5%8C%BA%E5%88%AB">(2) 数据仓库与数据库的区别</span></h3><p>数据仓库与数据库的区别实际上就是OLTP和OLAP的区别。</p>
+<ul>
+<li><p><strong>操作型处理（OLTP）</strong>：称为联机事务处理，也可以称为面向交易的处理系统，针对具体事务在数据库联机的日常操作，通常对少数记录进行查询、修改。用户较为关心操作的响应时间、数据的安全性、完整性和并发的支持用户数问题。</p>
+</li>
+<li><p><strong>分析型处理（OLAP）</strong>：称为联机分析处理，这种分析处理是针对事后的，它需要关注时间段内产生的所有有效数据，通过对数据进行分析来判断操作任务的过程是否正常，流程是否有可优化的地方，甚至对企业未来的业务发展方向进行预测。</p>
+</li>
+</ul>
+<h2><span id="4-ddl">4. DDL</span></h2><h3><span id="41-%E5%AE%9A%E4%B9%89%E6%95%B0%E6%8D%AE%E5%BA%93">4.1 定义数据库</span></h3><p>(1) <strong>创建数据库</strong><br><code>CREATE DATABASE &lt;数据库名称&gt;</code></p>
+<p>(2) <strong>查看数据库</strong><br><code>SHOW DATABASES</code></p>
+<p>(3) <strong>选择数据库</strong><br><code>USE &lt;数据库名称&gt;</code></p>
+<p>(4) <strong>删除数据库</strong><br><code>DROP DATABASE &lt;数据库名称&gt;</code></p>
+<h3><span id="42-%E6%95%B0%E6%8D%AE%E8%A1%A8">4.2 数据表</span></h3><p>(1) <strong>数据字典</strong><br>数据字典是一个用来描述数据表信息的表格，可以快速帮助分析人员快速梳理数据表的结构及字段的基础信息。</p>
+<p>(2) <strong>创建表</strong><br>CREATE TABLE &lt;表名&gt; (<br>    &lt;字段1&gt; &lt;数据类型1&gt; &lt;约束条件1&gt;,<br>    &lt;字段2&gt; &lt;数据类型2&gt; &lt;约束条件2&gt;,<br>    …,<br>    &lt;字段n&gt; &lt;数据类型n&gt; &lt;约束条件n&gt;<br>);<br>(3) <strong>查看表</strong><br>SHOW TABLES</p>
+<p>(4) <strong>查看表结构</strong><br>DESCRIBE &lt;表名&gt;</p>
+<p>(5) <strong>修改表</strong></p>
+<p>修改表名：ALTER TABLE &lt;原表名&gt; RENAME &lt;新表名&gt;</p>
+<p>修改字段名：ALTER TABLE &lt;表名&gt; CHANGE &lt;原字段名&gt; &lt;新字段名&gt; &lt;新数据类型&gt;</p>
+<p>修改字段类型：ALTER TABLE &lt;表名&gt; MODIFY &lt;字段名&gt; &lt;新数据类型&gt;</p>
+<p>添加新字段：ALTER TABLE &lt;表名&gt; ADD &lt;新字段名&gt; &lt;数据类型&gt; [约束条件] [FIRST | AFTER &lt;字段名&gt;]</p>
+<p>修改字段排列位置：ALTER TABLE &lt;表名&gt; MODIFY &lt;字段名&gt; &lt;数据类型&gt; FIRST | AFTER &lt;参照字段名&gt;</p>
+<p>删除字段：ALTER TABLE &lt;表名&gt; DROP &lt;字段名&gt;</p>
+<p>(6) <strong>删除表</strong><br>DROP TABLE [IF EXISTS] &lt;表名&gt; [, &lt;表名1&gt;, &lt;表名2&gt;, … &lt;表名n&gt;]</p>
+<h2><span id="5-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">5. 数据类型</span></h2><p>(1) 数值型：</p>
+<p>整数型：TINYINT, SMALLINT, MEDIUMINT, INT, BIGINT</p>
+<p>小数型：FLOAT, DECIMAL</p>
+<p>(2) 字符串型：<br>CHAR, VARCHAR, TEXT</p>
+<p>(3) 日期时间型：<br>DATE, DATETIME, TIME, TIMESTAMP</p>
+<h2><span id="6-%E7%BA%A6%E6%9D%9F%E6%9D%A1%E4%BB%B6">6. 约束条件</span></h2><p>PRIMARY KEY：主键约束</p>
+<p>NOT NULL：非空约束</p>
+<p>UNIQUE：唯一约束</p>
+<p>AUTO_INCREMENT：自动增长约束</p>
+<p>DEFAULT：默认约束</p>
+<p>7.DML<br>7.1 添加数据<br>(1) 手动添加数据<br>insert into &lt;表名&gt; [&lt;字段1&gt;,&lt;字段2&gt;,…&lt;字段n&gt;] values(&lt;值1&gt;,&lt;值2&gt;,…&lt;值n&gt;)<br>(2) 批量导入数据<br>load data infile’文件路径’into table〈表名〉[fields terminated by’分隔符’<br>ignore x lines]</p>
+<p>7.2 将查询结果添加到表中<br>(1) 将查询结果添加到已存在的表中<br>insert into &lt;新表名&gt;[&lt;字段1&gt;,&lt;字段2&gt;,…&lt;字段n&gt;] select &lt;字段1&gt;,&lt;字段2&gt;,…&lt;字段n&gt; from &lt;原表名&gt; [where&lt;查询条件&gt;]<br>(2) 将查询结果添加到新表中<br>create table &lt;新表名&gt; as<br>select &lt;字段1&gt;,&lt;字段2&gt;,…&lt;字段n&gt; from &lt;原表名&gt; [where&lt;查询条件&gt;]</p>
+<p>7.3 更新数据<br>update &lt;表名&gt; set &lt;字段1&gt; = &lt;值1&gt;[,&lt;字段2&gt; = &lt;值2&gt;,…&lt;字段n&gt; = &lt;值n&gt;][where&lt;更新条件&gt;]</p>
+</body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>Xiao Qing<br>
+        <strong>本文链接：</strong><a href="https://xiaoqing.github.io/post/MySQL.html" title="https:&#x2F;&#x2F;xiaoqing.github.io&#x2F;post&#x2F;MySQL.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;xiaoqing.github.io&#x2F;post&#x2F;MySQL.html</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/MySQL/" rel="tag">MySQL</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+	<link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css" />
+	<div id="gitalk"></div>
+	<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+	<script type="text/javascript">
+		const gitalk = new Gitalk({
+			clientID: 'Ov23ligqH2phvfWqedFc',
+			clientSecret: '06a62ec6e5b639e05d1a7519e01886456a0cf12a',
+			id: 'MySQL',
+			repo: 'laughing-octo-eureka',
+			owner: 'chenjia-q-',
+			admin: 'chenjia-q',
+			title: '博客评论',
+		});
+		gitalk.render('gitalk');
+	</script>
+
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="chenjia-q/laughing-octo-eureka"
+      data-repo-id="R_kgDOQrmE2g"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOQrmE2s4C1tY6"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="light"
+      data-lang="en"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
 </div>
 
 				</div>
