@@ -58,6 +58,11 @@ DEFAULT：默认约束
       </tags>
   </entry>
   <entry>
+    <title>机器学习</title>
+    <url>/post/undefined.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title>数据库基础知识</title>
     <url>/post/database-fundamentals.html</url>
     <content><![CDATA[1.1 什么是数据库数据库是存储、调用、分析数据的仓库，主要分为关系数据库和非关系数据库。在企业数据分析中使用的绝大部分数据都来自企业的数据库，数据库负责数据收集、数据整合、数据调用等工作，而且几乎所有的数据分析类工具都支持调用数据库中的数据。
@@ -127,29 +132,6 @@ HBase
       <tags>
         <tag>数据库</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/post/undefined.html</url>
-    <content><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post$ hexo new "My New Post"
-
-More info: Writing
-Run server$ hexo server
-
-More info: Server
-Generate static files$ hexo generate
-
-More info: Generating
-Deploy to remote sites$ hexo deploy
-
-More info: Deployment
-]]></content>
-  </entry>
-  <entry>
-    <title>机器学习</title>
-    <url>/post/undefined.html</url>
-    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>数据分析</title>
@@ -309,5 +291,23 @@ Q24 什么是同比、环比，意义是什么？ 环比：与相连续的上
         <tag>业务流程</tag>
         <tag>方法论</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/post/undefined.html</url>
+    <content><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick StartCreate a new post$ hexo new "My New Post"
+
+More info: Writing
+Run server$ hexo server
+
+More info: Server
+Generate static files$ hexo generate
+
+More info: Generating
+Deploy to remote sites$ hexo deploy
+
+More info: Deployment
+]]></content>
   </entry>
 </search>
