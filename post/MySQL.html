@@ -466,8 +466,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2026年02月09日</a>
-			<a><i class="kirafont icon-edit-fill"></i>1.7k 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 7 分钟</a>
+			<a><i class="kirafont icon-edit-fill"></i>5.4k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 23 分钟</a>
 		</div>
 		<html><head></head><body><h2><span id="1-sql%E7%9A%84%E5%88%86%E7%B1%BB%E5%8F%8A%E5%BA%94%E7%94%A8">1. SQL的分类及应用</span></h2><p>(1) <strong>数据定义语言（DDL）</strong>：用于创建、修改、删除数据库中的各种对象（数据库、表、视图、索引等）。常用的命令有 <code>CREATE</code>、<code>ALTER</code>、<code>DROP</code>。</p>
 <p>(2) <strong>数据操作语言（DML）</strong>：用于操作数据库表中的记录。常用的命令有 <code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>。</p>
@@ -495,36 +495,620 @@ document.addEventListener('DOMContentLoaded', function() {
 <p>(3) <strong>选择数据库</strong><br><code>USE &lt;数据库名称&gt;</code></p>
 <p>(4) <strong>删除数据库</strong><br><code>DROP DATABASE &lt;数据库名称&gt;</code></p>
 <h3><span id="42-%E6%95%B0%E6%8D%AE%E8%A1%A8">4.2 数据表</span></h3><p>(1) <strong>数据字典</strong><br>数据字典是一个用来描述数据表信息的表格，可以快速帮助分析人员快速梳理数据表的结构及字段的基础信息。</p>
-<p>(2) <strong>创建表</strong><br>CREATE TABLE &lt;表名&gt; (<br>    &lt;字段1&gt; &lt;数据类型1&gt; &lt;约束条件1&gt;,<br>    &lt;字段2&gt; &lt;数据类型2&gt; &lt;约束条件2&gt;,<br>    …,<br>    &lt;字段n&gt; &lt;数据类型n&gt; &lt;约束条件n&gt;<br>);<br>(3) <strong>查看表</strong><br>SHOW TABLES</p>
-<p>(4) <strong>查看表结构</strong><br>DESCRIBE &lt;表名&gt;</p>
+<p>(2) <strong>创建表</strong><br>CREATE TABLE &lt;表名&gt; (<br>    &lt;字段1&gt; &lt;数据类型1&gt; &lt;约束条件1&gt;,<br>    &lt;字段2&gt; &lt;数据类型2&gt; &lt;约束条件2&gt;,<br>    …,<br>    &lt;字段n&gt; &lt;数据类型n&gt; &lt;约束条件n&gt;<br>);<br>(3) <strong>查看表</strong><br><code>SHOW TABLES</code></p>
+<p>(4) <strong>查看表结构</strong><br><code>DESCRIBE &lt;表名&gt;</code></p>
 <p>(5) <strong>修改表</strong></p>
-<p>修改表名：ALTER TABLE &lt;原表名&gt; RENAME &lt;新表名&gt;</p>
-<p>修改字段名：ALTER TABLE &lt;表名&gt; CHANGE &lt;原字段名&gt; &lt;新字段名&gt; &lt;新数据类型&gt;</p>
-<p>修改字段类型：ALTER TABLE &lt;表名&gt; MODIFY &lt;字段名&gt; &lt;新数据类型&gt;</p>
-<p>添加新字段：ALTER TABLE &lt;表名&gt; ADD &lt;新字段名&gt; &lt;数据类型&gt; [约束条件] [FIRST | AFTER &lt;字段名&gt;]</p>
-<p>修改字段排列位置：ALTER TABLE &lt;表名&gt; MODIFY &lt;字段名&gt; &lt;数据类型&gt; FIRST | AFTER &lt;参照字段名&gt;</p>
-<p>删除字段：ALTER TABLE &lt;表名&gt; DROP &lt;字段名&gt;</p>
-<p>(6) <strong>删除表</strong><br>DROP TABLE [IF EXISTS] &lt;表名&gt; [, &lt;表名1&gt;, &lt;表名2&gt;, … &lt;表名n&gt;]</p>
-<h2><span id="5-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">5. 数据类型</span></h2><p>(1) 数值型：</p>
+<p>修改表名：<code>ALTER TABLE &lt;原表名&gt; RENAME &lt;新表名&gt;</code></p>
+<p>修改字段名：<code>ALTER TABLE &lt;表名&gt; CHANGE &lt;原字段名&gt; &lt;新字段名&gt; &lt;新数据类型&gt;</code></p>
+<p>修改字段类型：<code>ALTER TABLE &lt;表名&gt; MODIFY &lt;字段名&gt; &lt;新数据类型&gt;</code></p>
+<p>添加新字段：<code>ALTER TABLE &lt;表名&gt; ADD &lt;新字段名&gt; &lt;数据类型&gt; [约束条件] [FIRST | AFTER &lt;字段名&gt;]</code></p>
+<p>修改字段排列位置：<code>ALTER TABLE &lt;表名&gt; MODIFY &lt;字段名&gt; &lt;数据类型&gt; FIRST | AFTER &lt;参照字段名&gt;</code></p>
+<p>删除字段：<code>ALTER TABLE &lt;表名&gt; DROP &lt;字段名&gt;</code></p>
+<p>(6) <strong>删除表</strong><br><code>DROP TABLE [IF EXISTS] &lt;表名&gt; [, &lt;表名1&gt;, &lt;表名2&gt;, ... &lt;表名n&gt;]</code></p>
+<h2><span id="5-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">5. 数据类型</span></h2><p>(1) <em><strong>数值型</strong></em>：</p>
 <p>整数型：TINYINT, SMALLINT, MEDIUMINT, INT, BIGINT</p>
 <p>小数型：FLOAT, DECIMAL</p>
-<p>(2) 字符串型：<br>CHAR, VARCHAR, TEXT</p>
-<p>(3) 日期时间型：<br>DATE, DATETIME, TIME, TIMESTAMP</p>
+<p>(2) <em><strong>字符串型</strong></em>：<br>CHAR, VARCHAR, TEXT</p>
+<p>(3) <em><strong>日期时间型</strong></em>：<br>DATE, DATETIME, TIME, TIMESTAMP</p>
 <h2><span id="6-%E7%BA%A6%E6%9D%9F%E6%9D%A1%E4%BB%B6">6. 约束条件</span></h2><p>PRIMARY KEY：主键约束</p>
 <p>NOT NULL：非空约束</p>
 <p>UNIQUE：唯一约束</p>
 <p>AUTO_INCREMENT：自动增长约束</p>
 <p>DEFAULT：默认约束</p>
-<p>7.DML<br>7.1 添加数据<br>(1) 手动添加数据<br>insert into &lt;表名&gt; [&lt;字段1&gt;,&lt;字段2&gt;,…&lt;字段n&gt;] values(&lt;值1&gt;,&lt;值2&gt;,…&lt;值n&gt;)<br>(2) 批量导入数据<br>load data infile’文件路径’into table〈表名〉[fields terminated by’分隔符’<br>ignore x lines]</p>
-<p>7.2 将查询结果添加到表中<br>(1) 将查询结果添加到已存在的表中<br>insert into &lt;新表名&gt;[&lt;字段1&gt;,&lt;字段2&gt;,…&lt;字段n&gt;] select &lt;字段1&gt;,&lt;字段2&gt;,…&lt;字段n&gt; from &lt;原表名&gt; [where&lt;查询条件&gt;]<br>(2) 将查询结果添加到新表中<br>create table &lt;新表名&gt; as<br>select &lt;字段1&gt;,&lt;字段2&gt;,…&lt;字段n&gt; from &lt;原表名&gt; [where&lt;查询条件&gt;]</p>
-<p>7.3 更新数据<br>update &lt;表名&gt; set &lt;字段1&gt; = &lt;值1&gt;[,&lt;字段2&gt; = &lt;值2&gt;,…&lt;字段n&gt; = &lt;值n&gt;][where&lt;更新条件&gt;]</p>
+<h2><span id="7dml">7.DML</span></h2><h3><span id="71-%E6%B7%BB%E5%8A%A0%E6%95%B0%E6%8D%AE">7.1 添加数据</span></h3><p>(1) <em><strong>手动添加数据</strong></em><br><code>insert into &lt;表名&gt; [&lt;字段1&gt;,&lt;字段2&gt;,...&lt;字段n&gt;] values(&lt;值1&gt;,&lt;值2&gt;,...&lt;值n&gt;)</code></p>
+<p>(2) <em><strong>批量导入数据</strong></em><br><code>load data infile'文件路径'into table〈表名〉[fields terminated by'分隔符'ignore x lines]</code></p>
+<h3><span id="72-%E5%B0%86%E6%9F%A5%E8%AF%A2%E7%BB%93%E6%9E%9C%E6%B7%BB%E5%8A%A0%E5%88%B0%E8%A1%A8%E4%B8%AD">7.2 将查询结果添加到表中</span></h3><p>(1) <em><strong>将查询结果添加到已存在的表中</strong></em><br><code>insert into &lt;新表名&gt;[&lt;字段1&gt;,&lt;字段2&gt;,...&lt;字段n&gt;] select &lt;字段1&gt;,&lt;字段2&gt;,...&lt;字段n&gt; from &lt;原表名&gt; [where&lt;查询条件&gt;]</code><br>(2) <em><strong>将查询结果添加到新表中</strong></em><br><code>create table &lt;新表名&gt; as select &lt;字段1&gt;,&lt;字段2&gt;,...&lt;字段n&gt; from &lt;原表名&gt; [where&lt;查询条件&gt;]</code></p>
+<h3><span id="73-%E6%9B%B4%E6%96%B0%E6%95%B0%E6%8D%AE">7.3 更新数据</span></h3><p><code>update &lt;表名&gt; set &lt;字段1&gt; = &lt;值1&gt;[,&lt;字段2&gt; = &lt;值2&gt;,...&lt;字段n&gt; = &lt;值n&gt;][where&lt;更新条件&gt;]</code></p>
+<h3><span id="74-%E5%88%A0%E9%99%A4%E6%95%B0%E6%8D%AE">7.4 删除数据</span></h3><p><code>delete from &lt;表名&gt; [where 删除条件]</code></p>
+<h2><span id="8dql">8.DQL</span></h2><h3><span id="81-%E6%9F%A5%E8%AF%A2%E5%85%B3%E9%94%AE%E5%AD%97%E8%AF%B4%E6%98%8E">8.1 查询关键字说明</span></h3><p><strong>关键字功能对照表：</strong></p>
+<table>
+<thead>
+<tr>
+<th>关键词</th>
+<th>功能</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>select</td>
+<td>要返回的字段或表达式</td>
+<td>查询语句必须包含的关键词，主要用来对查询的字段进行筛选</td>
+</tr>
+<tr>
+<td>from</td>
+<td>从中检索数据的表</td>
+<td>用于限定数据查询的范围</td>
+</tr>
+<tr>
+<td>where</td>
+<td>行级过滤</td>
+<td>对记录进行筛选</td>
+</tr>
+<tr>
+<td>group by</td>
+<td>分组字段</td>
+<td></td>
+</tr>
+<tr>
+<td>having</td>
+<td>组级过滤</td>
+<td>对分组进行筛选</td>
+</tr>
+<tr>
+<td>order by</td>
+<td>输出排序</td>
+<td>对查询结果进行排序</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>限制输出</td>
+<td>限制查询结果的输出数量</td>
+</tr>
+</tbody></table>
+<h3><span id="82-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95%E6%A0%BC%E5%BC%8F">8.2 基础语法格式</span></h3><p>select {*|字段列表|表达式|公式|常量}<br>from &lt;表名 1&gt;[,&lt;表名 2&gt;…,&lt;表名 n&gt;]<br>[where &lt;查询条件&gt;]<br>[group by &lt;字段名&gt;]<br>[having &lt;查询条件&gt;]<br>[order by &lt;字段名&gt; [asc|desc]]<br>[limit [偏移量,]行数]</p>
+<p>(1) <em><strong>常量值</strong></em><br><code>select 1 from emp</code></p>
+<p>(2) <em><strong>公式</strong></em><br><code>select 1+1 from emp</code></p>
+<p>(3) <em><strong>表达式</strong></em><br><code>select 1 + 1 = 3</code></p>
+<p>(4) <em><strong>去重</strong></em><br>distinct既支持单个字段的去重，又支持多个字段的联合去重，在进行多个字段的重复去重时，只有在多个字段完全一样的情况下，才会将其视为重复字段进行删除。distinct必须位于第一个字段前，多个字段间用逗号隔开</p>
+<p>(5) <em><strong>设置别名</strong></em><br>使用as select sal+100 as 调薪 from emp<br>省略as select sal+100 调薪 from emp</p>
+<h3><span id="83-%E6%9D%A1%E4%BB%B6%E6%9F%A5%E8%AF%A2%E4%B8%ADsql%E5%B8%B8%E7%94%A8%E7%9A%84%E8%BF%90%E7%AE%97%E7%AC%A6">8.3 条件查询中SQL常用的运算符</span></h3><table>
+<thead>
+<tr>
+<th>类别</th>
+<th>写法</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>算术运算符</strong></td>
+<td>+</td>
+<td>加法运算</td>
+</tr>
+<tr>
+<td></td>
+<td>-</td>
+<td>减法运算</td>
+</tr>
+<tr>
+<td></td>
+<td>*</td>
+<td>乘法运算</td>
+</tr>
+<tr>
+<td></td>
+<td>/</td>
+<td>除法运算</td>
+</tr>
+<tr>
+<td><strong>逻辑运算符</strong></td>
+<td>and</td>
+<td>且</td>
+</tr>
+<tr>
+<td></td>
+<td>or</td>
+<td>或</td>
+</tr>
+<tr>
+<td></td>
+<td>not</td>
+<td>非</td>
+</tr>
+<tr>
+<td><strong>比较运算符</strong></td>
+<td>=</td>
+<td>判断左右两个值是否相等</td>
+</tr>
+<tr>
+<td></td>
+<td>&gt;/&gt;=</td>
+<td>判断左边的值是否大于/大于或等于右边</td>
+</tr>
+<tr>
+<td></td>
+<td>&lt;/&lt;=</td>
+<td>判断左边的值是否小于/小于或等于右边</td>
+</tr>
+<tr>
+<td></td>
+<td>!=/&lt;&gt;</td>
+<td>判断左边的值是否不等于右边</td>
+</tr>
+<tr>
+<td></td>
+<td>between…and</td>
+<td>判断值是否在某个连续区间范围内</td>
+</tr>
+<tr>
+<td></td>
+<td>in/not in</td>
+<td>判断左值等于/不等于右边列表中任意一个值</td>
+</tr>
+<tr>
+<td></td>
+<td>like</td>
+<td>用于字符串型字段的匹配</td>
+</tr>
+<tr>
+<td></td>
+<td>is null/is not null</td>
+<td>判断一个值是/不是 null</td>
+</tr>
+</tbody></table>
+<p><strong>模糊查询</strong><br><code>select * from emp where ename not like 'a%'</code> 查找姓名不以a开头的员工信息<br><code>select * from emp where ename not like '%a%'</code> 查找姓名不包含a的员工信息<br><code>select * from emp where ename like '_a%'</code> 查找姓名第二个字符为a的员工信息</p>
+<h3><span id="84-%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0">8.4 聚合函数</span></h3><table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>sum()</td>
+<td>对一个数值字段求和</td>
+</tr>
+<tr>
+<td>avg()</td>
+<td>对一个数值字段求平均值</td>
+</tr>
+<tr>
+<td>max()</td>
+<td>对一个数值或日期时间字段求最大值</td>
+</tr>
+<tr>
+<td>min()</td>
+<td>对一个数值或日期时间字段求最小值</td>
+</tr>
+<tr>
+<td>count()</td>
+<td>对一个或多个字段计数</td>
+</tr>
+</tbody></table>
+<p>where子句针对数据表进行筛选，在对查询结果的分组前，就将不符合where查询条件的记录过滤掉<br>having子句对分组聚合后的结果进行过滤，故having子句的筛选条件必须是可以出现在分组结果中的字段</p>
+<h3><span id="85-%E6%95%B0%E5%AD%A6%E5%87%BD%E6%95%B0">8.5 数学函数</span></h3><table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>abs(x)</td>
+<td>返回 x 的绝对值</td>
+</tr>
+<tr>
+<td>ceiling(x)</td>
+<td>返回大于或等于 x 的最小整数（进一取整）</td>
+</tr>
+<tr>
+<td>exp(x)</td>
+<td>返回 e^x 次方</td>
+</tr>
+<tr>
+<td>floor(x)</td>
+<td>返回小于或等于 x 的最大整数（去掉小数取整）</td>
+</tr>
+<tr>
+<td>greatest(expr1, expr2, expr3, …)</td>
+<td>返回列表中的最大值</td>
+</tr>
+<tr>
+<td>least(expr1, expr2, expr3, …)</td>
+<td>返回列表中的最小值</td>
+</tr>
+<tr>
+<td>ln()</td>
+<td>返回数字的自然对数，以 e 为底</td>
+</tr>
+<tr>
+<td>log(x)</td>
+<td>返回自然对数（以 e 为底的对数）</td>
+</tr>
+<tr>
+<td>log(base, x)</td>
+<td>返回以 base 为底的对数</td>
+</tr>
+<tr>
+<td>mod(x,y)</td>
+<td>返回 x 除以 y 以后的余数</td>
+</tr>
+<tr>
+<td>pi()</td>
+<td>返回圆周率</td>
+</tr>
+<tr>
+<td>pow(x,y)</td>
+<td>返回 x 的 y 次方</td>
+</tr>
+<tr>
+<td>rand()</td>
+<td>返回 0 ~ 1 的随机数，可以通过提供一个参数（种子），生成一个指定的值</td>
+</tr>
+<tr>
+<td>round(x[,d])</td>
+<td>返回 x 的四舍五入值，保留 d 位小数（d 的默认值为 0）</td>
+</tr>
+<tr>
+<td>sign(x)</td>
+<td>返回 x 的符号值，x 是负数、0、正数时分别返回 -1、0 和 1</td>
+</tr>
+<tr>
+<td>sqrt(x)</td>
+<td>返回 x 的平方根</td>
+</tr>
+<tr>
+<td>truncate(x,y)</td>
+<td>返回数值 x 保留到小数点后 y 位的值（与 round 函数最大的区别是不会进行四舍五入）</td>
+</tr>
+</tbody></table>
+<h3><span id="86-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0">8.6 字符串函数</span></h3><table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ascii(s)</td>
+<td>返回字符串 s 的第一个字符的 ASCII 码</td>
+</tr>
+<tr>
+<td>bin(n)</td>
+<td>返回值为 n 的二进制值的字符串表示</td>
+</tr>
+<tr>
+<td>bit_length(s)</td>
+<td>返回值为二进制的字符串 s 的长度</td>
+</tr>
+<tr>
+<td>concat(s1,s2,…)</td>
+<td>把字符串 s1、s2 等多个字符串合并为一个长字符串</td>
+</tr>
+<tr>
+<td>concat_ws(x,s1,s2,…)</td>
+<td>同 concat(s1,s2,…) 函数，但是每个字符串之间用 x 间隔，x 可以是分隔符</td>
+</tr>
+<tr>
+<td>field(s,s1,s2,…)</td>
+<td>返回第一个字符串 s 在字符串列表 (s1,s2,…) 中的位置</td>
+</tr>
+<tr>
+<td>find_in_set(s1,s2)</td>
+<td>返回在字符串 s2 中与 s1 匹配的字符串的位置</td>
+</tr>
+<tr>
+<td>insert(str,x,y,insert)</td>
+<td>将字符串 str 从第 x 位置开始，y 个字符长的子串替换为字符串 insert，返回结果</td>
+</tr>
+<tr>
+<td>instr(str,substr)</td>
+<td>返回子字符串 substr 在文本字符串 str 中第一次出现的位置</td>
+</tr>
+<tr>
+<td>locate(s1,s)</td>
+<td>从字符串 s 中获取 s1 的开始位置</td>
+</tr>
+<tr>
+<td>left(s,n)</td>
+<td>返回字符串 s 的前 n 个字符</td>
+</tr>
+<tr>
+<td>length(s)</td>
+<td>返回字符串 s 的字符长度</td>
+</tr>
+<tr>
+<td>lower(s)/lcase(s)</td>
+<td>将字符串 s 的所有字母变成小写字母</td>
+</tr>
+<tr>
+<td>ltrim(s)</td>
+<td>去掉字符串 s 开头的空格</td>
+</tr>
+<tr>
+<td>mid(s,n,len)</td>
+<td>从字符串 s 的第 n 位置截取长度为 len 的子字符串，substring(s,n,len)</td>
+</tr>
+<tr>
+<td>position(s1,s)</td>
+<td>返回字符串 s1 在字符串 s 中第一次出现的位置</td>
+</tr>
+<tr>
+<td>quote(s)</td>
+<td>用反斜线转义 s 中的单引号</td>
+</tr>
+<tr>
+<td>repeat(s,n)</td>
+<td>将字符串 s 重复 n 次</td>
+</tr>
+<tr>
+<td>replace(s1,s2)</td>
+<td>将字符串 s2 替代字符串 s 中的字符串 s1</td>
+</tr>
+<tr>
+<td>reverse(s)</td>
+<td>将字符串 s 的顺序反过来</td>
+</tr>
+<tr>
+<td>right(s,n)</td>
+<td>返回字符串 s 的后 n 个字符</td>
+</tr>
+<tr>
+<td>rtrim(s)</td>
+<td>去掉字符串 s 结尾的空格</td>
+</tr>
+<tr>
+<td>strcmp(s1,s2)</td>
+<td>比较字符串 s1 和 s2，若 s1 与 s2 相等，则返回 0；若 s1&gt;s2，则返回 1；若 s1&lt;s2，则返回 -1</td>
+</tr>
+<tr>
+<td>substring(s, start[, length])</td>
+<td>从字符串 s 的 start 位置截取长度为 length 的子字符串</td>
+</tr>
+<tr>
+<td>trim(s)</td>
+<td>去掉字符串 s 开始和结尾处的空格</td>
+</tr>
+<tr>
+<td>upper(s)/ucase(s)</td>
+<td>将字符串 s 的所有字母变成大写字母</td>
+</tr>
+</tbody></table>
+<h3><span id="87-%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E5%87%BD%E6%95%B0">8.7 日期时间函数</span></h3><table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>adddate(date,interval num type)/date_add(date,interval num type)</td>
+<td>计算起始日期 date 加上长度为 num、单位为 type 的时间长度的日期</td>
+</tr>
+<tr>
+<td>curdate()/current_date()</td>
+<td>返回当前日期</td>
+</tr>
+<tr>
+<td>curtime()/current_time</td>
+<td>返回当前时间</td>
+</tr>
+<tr>
+<td>current_timestamp()/localtimestamp()</td>
+<td>返回当前日期和时间</td>
+</tr>
+<tr>
+<td>date()</td>
+<td>从日期、日期时间表达式中提取日期值，或将字符串型数据转为日期型数据</td>
+</tr>
+<tr>
+<td>datediff(d1,d2)</td>
+<td>计算结束日 d1 和起始日 d2 之间间隔的天数</td>
+</tr>
+<tr>
+<td>date_format(date,format)</td>
+<td>根据 format 字符串格式化 date 的值</td>
+</tr>
+<tr>
+<td>date_sub(date,interval num type)/subdate(date,interval num type)</td>
+<td>计算起始日期 date 减去长度为 num、单位为 type 的时间长度的日期</td>
+</tr>
+<tr>
+<td>day(date)</td>
+<td>返回日期 date 的日期部分</td>
+</tr>
+<tr>
+<td>dayofmonth(date)</td>
+<td>计算日期 date 是本月的第几天（1 ~ 31）</td>
+</tr>
+<tr>
+<td>dayofweek(date)</td>
+<td>返回日期 date 所代表的一星期中的第几天（1 ~ 7），1 代表星期日，2 代表星期一，以此类推</td>
+</tr>
+<tr>
+<td>dayofyear(date)</td>
+<td>计算日期 date 是本年的第几天</td>
+</tr>
+<tr>
+<td>from_days(n)</td>
+<td>计算从 0000 年 1 月 1 日开始 n 天后的日期</td>
+</tr>
+<tr>
+<td>from_unixtime(ts,f)</td>
+<td>根据指定的 f 格式，格式化 UNIX 时间戳 ts</td>
+</tr>
+<tr>
+<td>hour(t)</td>
+<td>返回 t 中的小时值（0 ~ 23）</td>
+</tr>
+<tr>
+<td>last_day(date)</td>
+<td>返回给定日期的那一月份的最后一天</td>
+</tr>
+<tr>
+<td>maketime(hour, minute, second)</td>
+<td>3 个参数分别为小时、分钟、秒，将其组合为完整时间</td>
+</tr>
+<tr>
+<td>minute(t)</td>
+<td>返回 t 中的分钟值（0 ~ 59）</td>
+</tr>
+<tr>
+<td>monthname(date)</td>
+<td>返回日期 date 中的月份名称</td>
+</tr>
+<tr>
+<td>month(date)</td>
+<td>返回日期 date 中的月份值（1 ~ 12）</td>
+</tr>
+<tr>
+<td>now()</td>
+<td>返回当前日期和时间</td>
+</tr>
+<tr>
+<td>quarter(date)</td>
+<td>返回日期 date 是第几季（1 ~ 4）</td>
+</tr>
+<tr>
+<td>second(t)</td>
+<td>返回 t 中的秒钟值（0 ~ 59）</td>
+</tr>
+<tr>
+<td>sec_to_time(s)</td>
+<td>将以秒为单位的时间 s 转换为时分秒的格式</td>
+</tr>
+<tr>
+<td>str_to_date(string,format_mask)</td>
+<td>将字符串转换为日期</td>
+</tr>
+<tr>
+<td>time()</td>
+<td>提取传入参数的时间值</td>
+</tr>
+<tr>
+<td>time_format(t,f)</td>
+<td>根据指定的 f 格式，格式化时间 t</td>
+</tr>
+<tr>
+<td>time_to_sec(t)</td>
+<td>将时间 t 转换为秒</td>
+</tr>
+<tr>
+<td>timediff(t1,t2)</td>
+<td>计算 t1 和 t2 的时间差值</td>
+</tr>
+<tr>
+<td>to_days(date)</td>
+<td>计算日期 date 距离 0000 年 1 月 1 日的天数</td>
+</tr>
+<tr>
+<td>unix_timestamp([date])</td>
+<td>返回一个 UNIX 时间戳（从 1970-01-01 00:00:00 开始的秒数，date 默认值为当前时间）</td>
+</tr>
+<tr>
+<td>week(date)/weekofyear(date)</td>
+<td>计算日期 date 是本年的第几周（0 ~ 53）</td>
+</tr>
+<tr>
+<td>weekday(date)</td>
+<td>计算日期 date 是星期几，0 表示星期一，1 表示星期二</td>
+</tr>
+<tr>
+<td>year(date)</td>
+<td>返回日期 date 的年份（1000 ~ 9999）</td>
+</tr>
+</tbody></table>
+<h3><span id="88-%E5%88%86%E7%BB%84%E5%90%88%E5%B9%B6%E5%87%BD%E6%95%B0">8.8 分组合并函数</span></h3><p><code>group_concat([distinct] str [order by str asc/desc][separator])</code></p>
+<h3><span id="89-%E9%80%BB%E8%BE%91%E5%87%BD%E6%95%B0">8.9 逻辑函数</span></h3><p>(1) <em><strong>空值函数</strong></em><br><code>ifnull(experession, alt_value)</code></p>
+<p>(2) <em><strong>if函数</strong></em><br><code>if(expr1, expr2, expr3)</code><br>若expr1的值为真，则返回expr2的值，否则返回expr3的值</p>
+<p>(3) <em><strong>case函数</strong></em><br><code>case when expr1 then expr2 [when expr3 then expr4... else expr] end</code></p>
+<h3><span id="810-%E5%BC%80%E7%AA%97%E5%87%BD%E6%95%B0">8.10 开窗函数</span></h3><table>
+<thead>
+<tr>
+<th>函数名</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>row_number()</td>
+<td>为分区中的每一行分配一个顺序整数</td>
+</tr>
+<tr>
+<td>rank()</td>
+<td>为分区中的每一行分配等级，相同值产生并列，但等级序列存在间隙</td>
+</tr>
+<tr>
+<td>dense_rank()</td>
+<td>为分区中的每一行分配等级，相同值产生并列，等级序列中没有间隙</td>
+</tr>
+<tr>
+<td>percent_rank()</td>
+<td>计算分区或结果集中行的百分数等级</td>
+</tr>
+<tr>
+<td>cume_dist()</td>
+<td>计算一组值中一个值的累计分布</td>
+</tr>
+<tr>
+<td>ntile()</td>
+<td>将每个窗口分区的行分配到指定数量的排名组中</td>
+</tr>
+<tr>
+<td>lag()</td>
+<td>返回分区中当前行之前的第 N 行的值。如果不存在前一行，则返回 null</td>
+</tr>
+<tr>
+<td>lead()</td>
+<td>返回分区中当前行之后的第 N 行的值。如果不存在后续行，则返回 null</td>
+</tr>
+<tr>
+<td>first_value()</td>
+<td>返回相对于窗口框架第一行的指定表达式的值</td>
+</tr>
+<tr>
+<td>last_value()</td>
+<td>返回相对于窗口框架最后一行的指定表达式的值</td>
+</tr>
+<tr>
+<td>nth_value()</td>
+<td>从窗口框架的第 N 行返回参数的值</td>
+</tr>
+<tr>
+<td>sum()</td>
+<td>计算每个分组内的累积总和或者在整个结果集中进行累积计算</td>
+</tr>
+<tr>
+<td>avg()</td>
+<td>用于计算指定窗口中某列的平均值</td>
+</tr>
+<tr>
+<td>count()</td>
+<td>在需要保留所有行信息的同时，对每个分组内的行数进行计数</td>
+</tr>
+</tbody></table>
+<h3><span id="811-%E5%A4%9A%E8%A1%A8%E6%9F%A5%E8%AF%A2">8.11 多表查询</span></h3><p>(1) <em><strong>纵向查询</strong></em><br>union 去重<br>union all<br>合并时，字段的声明顺序和数据类型对应，并使用第一个结果集的字段名作为合并后的虚拟结果集的字段名</p>
+<p>(2) <em><strong>横向查询</strong></em><br>对应关系： 一对一：两个表中建立连接关系的字段均没有重复值<br>          一对多：两个表中建立连接关系的字段仅在其中一个表中有重复值<br>          多对多：两个表中建立连接关系的字段均有可能出现重复值</p>
+<p>连接方式: inner join: 两个表中的记录取交集<br>         left join: 按照连接条件，返回两个表中满足条件的记录，包含左表中的所有记录，右表匹配不到则显示为null<br>         right join: 按照连接条件，返回两个表中满足条件的记录，包含右表中的所有记录，左表匹配不到则显示为null<br>         cross join: 交叉连接不需要连接条件而是直接对两个表中的每行都进行两两连接<br>使用on或using声明连接条件</p>
+<h3><span id="812-%E5%AD%90%E6%9F%A5%E8%AF%A2">8.12 子查询</span></h3><p>(1) <em><strong>子查询的语法规则</strong></em><br>子查询必须用圆括号括起来</p>
+<p>子查询最多可以嵌套到 255 层（个别查询可能会不支持 255 层的嵌套）</p>
+<p>执行顺序由内到外，先执行内部的子查询，再执行外部的主查询</p>
+<p>若子查询返回的结果集在主查询中作为一个表，则必须添加表别名；若需要引用表子查询中的计算字段，则必须添加列别名才可以引用</p>
+<p>(2) <em><strong>子查询分类</strong></em><br>按照子查询返回的结果不同，子查询可分为标量子查询（返回的结果是一个单行单列的数据）、行子查询（返回的结果是一条有多个字段的记录）、列子查询（返回的结果是包含多条记录的单个字段）及表子查询（返回的结果是一个拥有多个字段和多条记录的临时表）</p>
+<p>子查询根据需求的不同，可以搭配不同子句使用，如果需要将子查询返回的结果作为主查询的计算字段，那么可以将子查询放在 select 子句中；如果需要将子查询返回的结果作为主查询的筛选条件，那么可以将子查询放在 where 或 having 子句中；如果需要将子查询返回的结果作为主查询的一个表，那么可以将子查询放在 from 或 join 子句中</p>
+<p>select子查询仅支持标量子查询和列子查询<br>from/join子查询通常为表子查询<br>where/having子查询通常用于根据较为复杂的业务逻辑需求来对数据进行条件筛选，支持所有种类的子查询，并可以直接使用运算符来对子查询返回的结果集进行比较和筛选</p>
+<p>(3) <em><strong>子查询优化</strong></em><br>首先MySQL需要为内层子查询的查询结果建立一个临时表，然后外层主查询在临时表上进行查询和筛选</p>
+<h2><span id="9%E8%A7%86%E5%9B%BE">9.视图</span></h2><h2><span id="91-%E8%A7%86%E5%9B%BE%E7%9A%84%E4%BD%9C%E7%94%A8">9.1 视图的作用</span></h2><p>与直接从表读取数据相比，视图的作用主要是减少代码的重写，或增加代码的重复利用</p>
+<p>视图拥有更高的安全性</p>
+<p>需要注意的是：<br>首先，视图的每次查询或者更新都是调用查询语句对底层基本表进行查询，因此操作视图会比直接操作底层基本表要慢，在大型表上创建视图或创建嵌套视图都会为数据库带来性能损耗<br>其次，对视图内部数据的修改会导致其底层基本表的修改，因此此操作会带来很大的风险，而且修改视图这个操作本身就拥有极大的限制</p>
+<h2><span id="92-%E5%88%9B%E5%BB%BA%E8%A7%86%E5%9B%BE">9.2 创建视图</span></h2><p><code>create view&lt;视图名&gt; as &lt;select 查询语句&gt; </code></p>
+<h2><span id="93-%E4%BF%AE%E6%94%B9%E8%A7%86%E5%9B%BE">9.3 修改视图</span></h2><p><code>create [or repalce or alter] view &lt;视图名&gt; as &lt;select 查询语句&gt;</code></p>
+<h2><span id="94-%E5%88%A0%E9%99%A4%E8%A7%86%E5%9B%BE">9.4 删除视图</span></h2><p><code>drop view[if exists]&lt;视图名&gt;</code></p>
 </body></html>
 	</article>
 
 	 
     <div class="kira-post-copyright">
         <strong>本文作者：</strong>Xiao Qing<br>
-        <strong>本文链接：</strong><a href="https://xiaoqing.github.io/post/MySQL.html" title="https:&#x2F;&#x2F;xiaoqing.github.io&#x2F;post&#x2F;MySQL.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;xiaoqing.github.io&#x2F;post&#x2F;MySQL.html</a><br>
+        <strong>本文链接：</strong><a href="https://chenjia-q.github.io/post/MySQL.html" title="https:&#x2F;&#x2F;chenjia-q.github.io&#x2F;post&#x2F;MySQL.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;chenjia-q.github.io&#x2F;post&#x2F;MySQL.html</a><br>
         
             <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
         

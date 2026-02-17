@@ -1,6 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Hello World</title>
+    <url>/post/undefined.html</url>
+    <content><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick StartCreate a new post$ hexo new "My New Post"
+
+More info: Writing
+Run server$ hexo server
+
+More info: Server
+Generate static files$ hexo generate
+
+More info: Generating
+Deploy to remote sites$ hexo deploy
+
+More info: Deployment
+]]></content>
+  </entry>
+  <entry>
+    <title>数据库基础知识</title>
+    <url>/post/database-fundamentals.html</url>
+    <content><![CDATA[1.1 什么是数据库数据库是存储、调用、分析数据的仓库，主要分为关系数据库和非关系数据库。在企业数据分析中使用的绝大部分数据都来自企业的数据库，数据库负责数据收集、数据整合、数据调用等工作，而且几乎所有的数据分析类工具都支持调用数据库中的数据。
+数据库是表的集合，一个表是多个字段的集合，一个字段是由字段名和记录组成的一列数据。用于建立、使用和维护数据库的大型软件称为数据库管理系统（DBMS）。
+1.2 数据库分类(1) 关系数据库关系数据库是用来存放结构化数据的数据库。关系数据库以行和列的形式存储数据，这一系列的行和列被称为表，一组表组成了数据库。其数据的主要来源是公司日常业务系统，以及网站、APP 等客户端应用程序所产生的实时的数据。
+当前市面上使用的主流的关系数据库有：
+1) DB2
+特点：非开源的付费数据库管理系统，有限制功能的免费版本
+应用场景：主要应用于大型应用系统，伸缩性较好，支持从大型机到单用户环境
+优势：提供高层级的数据利用性，速度快，可靠性好，处理海量数据急速高效，拥有很强的网络支持能力
+适用对象：大中型企业
+
+2) Oracle
+特点：非开源的付费数据库管理系统，有限制功能的免费版本
+应用场景：能在所有的主流平台上运行，可扩展性强
+优势：具有完整的数据管理功能，运行稳定，安全性和性能都在数据库中名列前茅
+适用对象：大型企业
+
+3) MySQL
+特点：开放源代码的数据库管理系统，具有成本低、速度快等特性
+发展历史：
+2000年由 MySQL AB 公司开发
+2008年 MySQL AB 公司被 Sun 公司收购
+2009年 Sun 公司被 Oracle 公司收购
+
+
+优势：在 Oracle 公司的技术支持下，自 2010 年开始发布了多个版本，在各方面加强了企业级的特性
+
+4) SQL Server
+特点：非开源的付费数据库管理系统，有限制功能的免费版本
+优势：与同为微软旗下的产品和系统平台交互较好
+适用对象：中小型企业
+
+(2) 非关系数据库非关系数据库是用来存放非结构化数据的数据库，它不像关系数据库局限于固定的结构，而是采取开放式结构来存储数据，其标准也不像关系数据库那样统一。
+常用的存储标准有键值对（Key-Value），即键（Key）对应值（Value），且对应的值可以采取不同的长度和类型。例如，北京市朝阳区 xx 街道 xx 小区就是一个键，这个小区内部全部的房屋、家具和住户都可以作为对应的值保存在非关系数据库中。
+数据来源：
+
+大部分来自企业系统之外
+由于企业系统所产生的数据难以满足全部的业务需求，所以需要利用非关系数据库存放一部分非结构化数据作为补充信息
+
+应用场景举例：
+
+当我们通过聊天 App 进行交流时，不仅会产生日期类、文件类的结构化数据，也会产生语音、图片类的非结构化数据。
+当 App 需要开发语音识别功能时，就会需要从非关系数据库中获取语音信息。
+
+非结构化数据的特点：
+
+类型非常分散
+可以是视频格式：如短视频、直播录制等
+可以是图片格式：如手机和照相机拍摄的图片、患者的影像图片等
+可以是音频信息：如会议录音、医生的口述诊疗记录等
+
+非关系数据库的特点：
+
+不如关系数据库应用较为统一
+类型非常多
+操作语言并不统一
+针对不同的应用场景有不同的数据库应用系统
+
+使用场景：通常只有少数做自然语言处理、图像识别、语音识别的公司会采用非关系数据库来存储数据。
+主流非关系数据库：
+
+MongoDB
+HBase
+
+]]></content>
+      <tags>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MySQL</title>
     <url>/post/MySQL.html</url>
     <content><![CDATA[1. SQL的分类及应用(1) 数据定义语言（DDL）：用于创建、修改、删除数据库中的各种对象（数据库、表、视图、索引等）。常用的命令有 CREATE、ALTER、DROP。
@@ -38,7 +127,7 @@
 添加新字段：ALTER TABLE &lt;表名&gt; ADD &lt;新字段名&gt; &lt;数据类型&gt; [约束条件] [FIRST | AFTER &lt;字段名&gt;]
 修改字段排列位置：ALTER TABLE &lt;表名&gt; MODIFY &lt;字段名&gt; &lt;数据类型&gt; FIRST | AFTER &lt;参照字段名&gt;
 删除字段：ALTER TABLE &lt;表名&gt; DROP &lt;字段名&gt;
-(6) 删除表DROP TABLE [IF EXISTS] &lt;表名&gt; [, &lt;表名1&gt;, &lt;表名2&gt;, … &lt;表名n&gt;]
+(6) 删除表DROP TABLE [IF EXISTS] &lt;表名&gt; [, &lt;表名1&gt;, &lt;表名2&gt;, ... &lt;表名n&gt;]
 5. 数据类型(1) 数值型：
 整数型：TINYINT, SMALLINT, MEDIUMINT, INT, BIGINT
 小数型：FLOAT, DECIMAL
@@ -49,13 +138,602 @@ NOT NULL：非空约束
 UNIQUE：唯一约束
 AUTO_INCREMENT：自动增长约束
 DEFAULT：默认约束
-7.DML7.1 添加数据(1) 手动添加数据insert into &lt;表名&gt; [&lt;字段1&gt;,&lt;字段2&gt;,…&lt;字段n&gt;] values(&lt;值1&gt;,&lt;值2&gt;,…&lt;值n&gt;)(2) 批量导入数据load data infile’文件路径’into table〈表名〉[fields terminated by’分隔符’ignore x lines]
-7.2 将查询结果添加到表中(1) 将查询结果添加到已存在的表中insert into &lt;新表名&gt;[&lt;字段1&gt;,&lt;字段2&gt;,…&lt;字段n&gt;] select &lt;字段1&gt;,&lt;字段2&gt;,…&lt;字段n&gt; from &lt;原表名&gt; [where&lt;查询条件&gt;](2) 将查询结果添加到新表中create table &lt;新表名&gt; asselect &lt;字段1&gt;,&lt;字段2&gt;,…&lt;字段n&gt; from &lt;原表名&gt; [where&lt;查询条件&gt;]
-7.3 更新数据update &lt;表名&gt; set &lt;字段1&gt; = &lt;值1&gt;[,&lt;字段2&gt; = &lt;值2&gt;,…&lt;字段n&gt; = &lt;值n&gt;][where&lt;更新条件&gt;]
+7.DML7.1 添加数据(1) 手动添加数据insert into &lt;表名&gt; [&lt;字段1&gt;,&lt;字段2&gt;,...&lt;字段n&gt;] values(&lt;值1&gt;,&lt;值2&gt;,...&lt;值n&gt;)
+(2) 批量导入数据load data infile'文件路径'into table〈表名〉[fields terminated by'分隔符'ignore x lines]
+7.2 将查询结果添加到表中(1) 将查询结果添加到已存在的表中insert into &lt;新表名&gt;[&lt;字段1&gt;,&lt;字段2&gt;,...&lt;字段n&gt;] select &lt;字段1&gt;,&lt;字段2&gt;,...&lt;字段n&gt; from &lt;原表名&gt; [where&lt;查询条件&gt;](2) 将查询结果添加到新表中create table &lt;新表名&gt; as select &lt;字段1&gt;,&lt;字段2&gt;,...&lt;字段n&gt; from &lt;原表名&gt; [where&lt;查询条件&gt;]
+7.3 更新数据update &lt;表名&gt; set &lt;字段1&gt; = &lt;值1&gt;[,&lt;字段2&gt; = &lt;值2&gt;,...&lt;字段n&gt; = &lt;值n&gt;][where&lt;更新条件&gt;]
+7.4 删除数据delete from &lt;表名&gt; [where 删除条件]
+8.DQL8.1 查询关键字说明关键字功能对照表：
+
+
+
+关键词
+功能
+说明
+
+
+
+select
+要返回的字段或表达式
+查询语句必须包含的关键词，主要用来对查询的字段进行筛选
+
+
+from
+从中检索数据的表
+用于限定数据查询的范围
+
+
+where
+行级过滤
+对记录进行筛选
+
+
+group by
+分组字段
+
+
+
+having
+组级过滤
+对分组进行筛选
+
+
+order by
+输出排序
+对查询结果进行排序
+
+
+limit
+限制输出
+限制查询结果的输出数量
+
+
+8.2 基础语法格式select {*|字段列表|表达式|公式|常量}from &lt;表名 1&gt;[,&lt;表名 2&gt;…,&lt;表名 n&gt;][where &lt;查询条件&gt;][group by &lt;字段名&gt;][having &lt;查询条件&gt;][order by &lt;字段名&gt; [asc|desc]][limit [偏移量,]行数]
+(1) 常量值select 1 from emp
+(2) 公式select 1+1 from emp
+(3) 表达式select 1 + 1 = 3
+(4) 去重distinct既支持单个字段的去重，又支持多个字段的联合去重，在进行多个字段的重复去重时，只有在多个字段完全一样的情况下，才会将其视为重复字段进行删除。distinct必须位于第一个字段前，多个字段间用逗号隔开
+(5) 设置别名使用as select sal+100 as 调薪 from emp省略as select sal+100 调薪 from emp
+8.3 条件查询中SQL常用的运算符
+
+
+类别
+写法
+作用
+
+
+
+算术运算符
++
+加法运算
+
+
+
+-
+减法运算
+
+
+
+*
+乘法运算
+
+
+
+/
+除法运算
+
+
+逻辑运算符
+and
+且
+
+
+
+or
+或
+
+
+
+not
+非
+
+
+比较运算符
+=
+判断左右两个值是否相等
+
+
+
+&gt;/&gt;=
+判断左边的值是否大于/大于或等于右边
+
+
+
+&lt;/&lt;=
+判断左边的值是否小于/小于或等于右边
+
+
+
+!=/&lt;&gt;
+判断左边的值是否不等于右边
+
+
+
+between…and
+判断值是否在某个连续区间范围内
+
+
+
+in/not in
+判断左值等于/不等于右边列表中任意一个值
+
+
+
+like
+用于字符串型字段的匹配
+
+
+
+is null/is not null
+判断一个值是/不是 null
+
+
+模糊查询select * from emp where ename not like 'a%' 查找姓名不以a开头的员工信息select * from emp where ename not like '%a%' 查找姓名不包含a的员工信息select * from emp where ename like '_a%' 查找姓名第二个字符为a的员工信息
+8.4 聚合函数
+
+
+函数名
+描述
+
+
+
+sum()
+对一个数值字段求和
+
+
+avg()
+对一个数值字段求平均值
+
+
+max()
+对一个数值或日期时间字段求最大值
+
+
+min()
+对一个数值或日期时间字段求最小值
+
+
+count()
+对一个或多个字段计数
+
+
+where子句针对数据表进行筛选，在对查询结果的分组前，就将不符合where查询条件的记录过滤掉having子句对分组聚合后的结果进行过滤，故having子句的筛选条件必须是可以出现在分组结果中的字段
+8.5 数学函数
+
+
+函数名
+描述
+
+
+
+abs(x)
+返回 x 的绝对值
+
+
+ceiling(x)
+返回大于或等于 x 的最小整数（进一取整）
+
+
+exp(x)
+返回 e^x 次方
+
+
+floor(x)
+返回小于或等于 x 的最大整数（去掉小数取整）
+
+
+greatest(expr1, expr2, expr3, …)
+返回列表中的最大值
+
+
+least(expr1, expr2, expr3, …)
+返回列表中的最小值
+
+
+ln()
+返回数字的自然对数，以 e 为底
+
+
+log(x)
+返回自然对数（以 e 为底的对数）
+
+
+log(base, x)
+返回以 base 为底的对数
+
+
+mod(x,y)
+返回 x 除以 y 以后的余数
+
+
+pi()
+返回圆周率
+
+
+pow(x,y)
+返回 x 的 y 次方
+
+
+rand()
+返回 0 ~ 1 的随机数，可以通过提供一个参数（种子），生成一个指定的值
+
+
+round(x[,d])
+返回 x 的四舍五入值，保留 d 位小数（d 的默认值为 0）
+
+
+sign(x)
+返回 x 的符号值，x 是负数、0、正数时分别返回 -1、0 和 1
+
+
+sqrt(x)
+返回 x 的平方根
+
+
+truncate(x,y)
+返回数值 x 保留到小数点后 y 位的值（与 round 函数最大的区别是不会进行四舍五入）
+
+
+8.6 字符串函数
+
+
+函数名
+描述
+
+
+
+ascii(s)
+返回字符串 s 的第一个字符的 ASCII 码
+
+
+bin(n)
+返回值为 n 的二进制值的字符串表示
+
+
+bit_length(s)
+返回值为二进制的字符串 s 的长度
+
+
+concat(s1,s2,…)
+把字符串 s1、s2 等多个字符串合并为一个长字符串
+
+
+concat_ws(x,s1,s2,…)
+同 concat(s1,s2,…) 函数，但是每个字符串之间用 x 间隔，x 可以是分隔符
+
+
+field(s,s1,s2,…)
+返回第一个字符串 s 在字符串列表 (s1,s2,…) 中的位置
+
+
+find_in_set(s1,s2)
+返回在字符串 s2 中与 s1 匹配的字符串的位置
+
+
+insert(str,x,y,insert)
+将字符串 str 从第 x 位置开始，y 个字符长的子串替换为字符串 insert，返回结果
+
+
+instr(str,substr)
+返回子字符串 substr 在文本字符串 str 中第一次出现的位置
+
+
+locate(s1,s)
+从字符串 s 中获取 s1 的开始位置
+
+
+left(s,n)
+返回字符串 s 的前 n 个字符
+
+
+length(s)
+返回字符串 s 的字符长度
+
+
+lower(s)/lcase(s)
+将字符串 s 的所有字母变成小写字母
+
+
+ltrim(s)
+去掉字符串 s 开头的空格
+
+
+mid(s,n,len)
+从字符串 s 的第 n 位置截取长度为 len 的子字符串，substring(s,n,len)
+
+
+position(s1,s)
+返回字符串 s1 在字符串 s 中第一次出现的位置
+
+
+quote(s)
+用反斜线转义 s 中的单引号
+
+
+repeat(s,n)
+将字符串 s 重复 n 次
+
+
+replace(s1,s2)
+将字符串 s2 替代字符串 s 中的字符串 s1
+
+
+reverse(s)
+将字符串 s 的顺序反过来
+
+
+right(s,n)
+返回字符串 s 的后 n 个字符
+
+
+rtrim(s)
+去掉字符串 s 结尾的空格
+
+
+strcmp(s1,s2)
+比较字符串 s1 和 s2，若 s1 与 s2 相等，则返回 0；若 s1&gt;s2，则返回 1；若 s1&lt;s2，则返回 -1
+
+
+substring(s, start[, length])
+从字符串 s 的 start 位置截取长度为 length 的子字符串
+
+
+trim(s)
+去掉字符串 s 开始和结尾处的空格
+
+
+upper(s)/ucase(s)
+将字符串 s 的所有字母变成大写字母
+
+
+8.7 日期时间函数
+
+
+函数名
+描述
+
+
+
+adddate(date,interval num type)/date_add(date,interval num type)
+计算起始日期 date 加上长度为 num、单位为 type 的时间长度的日期
+
+
+curdate()/current_date()
+返回当前日期
+
+
+curtime()/current_time
+返回当前时间
+
+
+current_timestamp()/localtimestamp()
+返回当前日期和时间
+
+
+date()
+从日期、日期时间表达式中提取日期值，或将字符串型数据转为日期型数据
+
+
+datediff(d1,d2)
+计算结束日 d1 和起始日 d2 之间间隔的天数
+
+
+date_format(date,format)
+根据 format 字符串格式化 date 的值
+
+
+date_sub(date,interval num type)/subdate(date,interval num type)
+计算起始日期 date 减去长度为 num、单位为 type 的时间长度的日期
+
+
+day(date)
+返回日期 date 的日期部分
+
+
+dayofmonth(date)
+计算日期 date 是本月的第几天（1 ~ 31）
+
+
+dayofweek(date)
+返回日期 date 所代表的一星期中的第几天（1 ~ 7），1 代表星期日，2 代表星期一，以此类推
+
+
+dayofyear(date)
+计算日期 date 是本年的第几天
+
+
+from_days(n)
+计算从 0000 年 1 月 1 日开始 n 天后的日期
+
+
+from_unixtime(ts,f)
+根据指定的 f 格式，格式化 UNIX 时间戳 ts
+
+
+hour(t)
+返回 t 中的小时值（0 ~ 23）
+
+
+last_day(date)
+返回给定日期的那一月份的最后一天
+
+
+maketime(hour, minute, second)
+3 个参数分别为小时、分钟、秒，将其组合为完整时间
+
+
+minute(t)
+返回 t 中的分钟值（0 ~ 59）
+
+
+monthname(date)
+返回日期 date 中的月份名称
+
+
+month(date)
+返回日期 date 中的月份值（1 ~ 12）
+
+
+now()
+返回当前日期和时间
+
+
+quarter(date)
+返回日期 date 是第几季（1 ~ 4）
+
+
+second(t)
+返回 t 中的秒钟值（0 ~ 59）
+
+
+sec_to_time(s)
+将以秒为单位的时间 s 转换为时分秒的格式
+
+
+str_to_date(string,format_mask)
+将字符串转换为日期
+
+
+time()
+提取传入参数的时间值
+
+
+time_format(t,f)
+根据指定的 f 格式，格式化时间 t
+
+
+time_to_sec(t)
+将时间 t 转换为秒
+
+
+timediff(t1,t2)
+计算 t1 和 t2 的时间差值
+
+
+to_days(date)
+计算日期 date 距离 0000 年 1 月 1 日的天数
+
+
+unix_timestamp([date])
+返回一个 UNIX 时间戳（从 1970-01-01 00:00:00 开始的秒数，date 默认值为当前时间）
+
+
+week(date)/weekofyear(date)
+计算日期 date 是本年的第几周（0 ~ 53）
+
+
+weekday(date)
+计算日期 date 是星期几，0 表示星期一，1 表示星期二
+
+
+year(date)
+返回日期 date 的年份（1000 ~ 9999）
+
+
+8.8 分组合并函数group_concat([distinct] str [order by str asc/desc][separator])
+8.9 逻辑函数(1) 空值函数ifnull(experession, alt_value)
+(2) if函数if(expr1, expr2, expr3)若expr1的值为真，则返回expr2的值，否则返回expr3的值
+(3) case函数case when expr1 then expr2 [when expr3 then expr4... else expr] end
+8.10 开窗函数
+
+
+函数名
+描述
+
+
+
+row_number()
+为分区中的每一行分配一个顺序整数
+
+
+rank()
+为分区中的每一行分配等级，相同值产生并列，但等级序列存在间隙
+
+
+dense_rank()
+为分区中的每一行分配等级，相同值产生并列，等级序列中没有间隙
+
+
+percent_rank()
+计算分区或结果集中行的百分数等级
+
+
+cume_dist()
+计算一组值中一个值的累计分布
+
+
+ntile()
+将每个窗口分区的行分配到指定数量的排名组中
+
+
+lag()
+返回分区中当前行之前的第 N 行的值。如果不存在前一行，则返回 null
+
+
+lead()
+返回分区中当前行之后的第 N 行的值。如果不存在后续行，则返回 null
+
+
+first_value()
+返回相对于窗口框架第一行的指定表达式的值
+
+
+last_value()
+返回相对于窗口框架最后一行的指定表达式的值
+
+
+nth_value()
+从窗口框架的第 N 行返回参数的值
+
+
+sum()
+计算每个分组内的累积总和或者在整个结果集中进行累积计算
+
+
+avg()
+用于计算指定窗口中某列的平均值
+
+
+count()
+在需要保留所有行信息的同时，对每个分组内的行数进行计数
+
+
+8.11 多表查询(1) 纵向查询union 去重union all合并时，字段的声明顺序和数据类型对应，并使用第一个结果集的字段名作为合并后的虚拟结果集的字段名
+(2) 横向查询对应关系： 一对一：两个表中建立连接关系的字段均没有重复值          一对多：两个表中建立连接关系的字段仅在其中一个表中有重复值          多对多：两个表中建立连接关系的字段均有可能出现重复值
+连接方式: inner join: 两个表中的记录取交集         left join: 按照连接条件，返回两个表中满足条件的记录，包含左表中的所有记录，右表匹配不到则显示为null         right join: 按照连接条件，返回两个表中满足条件的记录，包含右表中的所有记录，左表匹配不到则显示为null         cross join: 交叉连接不需要连接条件而是直接对两个表中的每行都进行两两连接使用on或using声明连接条件
+8.12 子查询(1) 子查询的语法规则子查询必须用圆括号括起来
+子查询最多可以嵌套到 255 层（个别查询可能会不支持 255 层的嵌套）
+执行顺序由内到外，先执行内部的子查询，再执行外部的主查询
+若子查询返回的结果集在主查询中作为一个表，则必须添加表别名；若需要引用表子查询中的计算字段，则必须添加列别名才可以引用
+(2) 子查询分类按照子查询返回的结果不同，子查询可分为标量子查询（返回的结果是一个单行单列的数据）、行子查询（返回的结果是一条有多个字段的记录）、列子查询（返回的结果是包含多条记录的单个字段）及表子查询（返回的结果是一个拥有多个字段和多条记录的临时表）
+子查询根据需求的不同，可以搭配不同子句使用，如果需要将子查询返回的结果作为主查询的计算字段，那么可以将子查询放在 select 子句中；如果需要将子查询返回的结果作为主查询的筛选条件，那么可以将子查询放在 where 或 having 子句中；如果需要将子查询返回的结果作为主查询的一个表，那么可以将子查询放在 from 或 join 子句中
+select子查询仅支持标量子查询和列子查询from/join子查询通常为表子查询where/having子查询通常用于根据较为复杂的业务逻辑需求来对数据进行条件筛选，支持所有种类的子查询，并可以直接使用运算符来对子查询返回的结果集进行比较和筛选
+(3) 子查询优化首先MySQL需要为内层子查询的查询结果建立一个临时表，然后外层主查询在临时表上进行查询和筛选
+9.视图9.1 视图的作用与直接从表读取数据相比，视图的作用主要是减少代码的重写，或增加代码的重复利用
+视图拥有更高的安全性
+需要注意的是：首先，视图的每次查询或者更新都是调用查询语句对底层基本表进行查询，因此操作视图会比直接操作底层基本表要慢，在大型表上创建视图或创建嵌套视图都会为数据库带来性能损耗其次，对视图内部数据的修改会导致其底层基本表的修改，因此此操作会带来很大的风险，而且修改视图这个操作本身就拥有极大的限制
+9.2 创建视图create view&lt;视图名&gt; as &lt;select 查询语句&gt; 
+9.3 修改视图create [or repalce or alter] view &lt;视图名&gt; as &lt;select 查询语句&gt;
+9.4 删除视图drop view[if exists]&lt;视图名&gt;
 ]]></content>
       <tags>
         <tag>MySQL</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>机器学习</title>
+    <url>/post/undefined.html</url>
+    <content><![CDATA[]]></content>
   </entry>
   <entry>
     <title>数据分析</title>
@@ -214,100 +892,6 @@ Q24 什么是同比、环比，意义是什么？ 环比：与相连续的上
         <tag>数据分析</tag>
         <tag>业务流程</tag>
         <tag>方法论</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>机器学习</title>
-    <url>/post/undefined.html</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/post/undefined.html</url>
-    <content><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post$ hexo new "My New Post"
-
-More info: Writing
-Run server$ hexo server
-
-More info: Server
-Generate static files$ hexo generate
-
-More info: Generating
-Deploy to remote sites$ hexo deploy
-
-More info: Deployment
-]]></content>
-  </entry>
-  <entry>
-    <title>数据库基础知识</title>
-    <url>/post/database-fundamentals.html</url>
-    <content><![CDATA[1.1 什么是数据库数据库是存储、调用、分析数据的仓库，主要分为关系数据库和非关系数据库。在企业数据分析中使用的绝大部分数据都来自企业的数据库，数据库负责数据收集、数据整合、数据调用等工作，而且几乎所有的数据分析类工具都支持调用数据库中的数据。
-数据库是表的集合，一个表是多个字段的集合，一个字段是由字段名和记录组成的一列数据。用于建立、使用和维护数据库的大型软件称为数据库管理系统（DBMS）。
-1.2 数据库分类(1) 关系数据库关系数据库是用来存放结构化数据的数据库。关系数据库以行和列的形式存储数据，这一系列的行和列被称为表，一组表组成了数据库。其数据的主要来源是公司日常业务系统，以及网站、APP 等客户端应用程序所产生的实时的数据。
-当前市面上使用的主流的关系数据库有：
-1) DB2
-特点：非开源的付费数据库管理系统，有限制功能的免费版本
-应用场景：主要应用于大型应用系统，伸缩性较好，支持从大型机到单用户环境
-优势：提供高层级的数据利用性，速度快，可靠性好，处理海量数据急速高效，拥有很强的网络支持能力
-适用对象：大中型企业
-
-2) Oracle
-特点：非开源的付费数据库管理系统，有限制功能的免费版本
-应用场景：能在所有的主流平台上运行，可扩展性强
-优势：具有完整的数据管理功能，运行稳定，安全性和性能都在数据库中名列前茅
-适用对象：大型企业
-
-3) MySQL
-特点：开放源代码的数据库管理系统，具有成本低、速度快等特性
-发展历史：
-2000年由 MySQL AB 公司开发
-2008年 MySQL AB 公司被 Sun 公司收购
-2009年 Sun 公司被 Oracle 公司收购
-
-
-优势：在 Oracle 公司的技术支持下，自 2010 年开始发布了多个版本，在各方面加强了企业级的特性
-
-4) SQL Server
-特点：非开源的付费数据库管理系统，有限制功能的免费版本
-优势：与同为微软旗下的产品和系统平台交互较好
-适用对象：中小型企业
-
-(2) 非关系数据库非关系数据库是用来存放非结构化数据的数据库，它不像关系数据库局限于固定的结构，而是采取开放式结构来存储数据，其标准也不像关系数据库那样统一。
-常用的存储标准有键值对（Key-Value），即键（Key）对应值（Value），且对应的值可以采取不同的长度和类型。例如，北京市朝阳区 xx 街道 xx 小区就是一个键，这个小区内部全部的房屋、家具和住户都可以作为对应的值保存在非关系数据库中。
-数据来源：
-
-大部分来自企业系统之外
-由于企业系统所产生的数据难以满足全部的业务需求，所以需要利用非关系数据库存放一部分非结构化数据作为补充信息
-
-应用场景举例：
-
-当我们通过聊天 App 进行交流时，不仅会产生日期类、文件类的结构化数据，也会产生语音、图片类的非结构化数据。
-当 App 需要开发语音识别功能时，就会需要从非关系数据库中获取语音信息。
-
-非结构化数据的特点：
-
-类型非常分散
-可以是视频格式：如短视频、直播录制等
-可以是图片格式：如手机和照相机拍摄的图片、患者的影像图片等
-可以是音频信息：如会议录音、医生的口述诊疗记录等
-
-非关系数据库的特点：
-
-不如关系数据库应用较为统一
-类型非常多
-操作语言并不统一
-针对不同的应用场景有不同的数据库应用系统
-
-使用场景：通常只有少数做自然语言处理、图像识别、语音识别的公司会采用非关系数据库来存储数据。
-主流非关系数据库：
-
-MongoDB
-HBase
-
-]]></content>
-      <tags>
-        <tag>数据库</tag>
       </tags>
   </entry>
 </search>
