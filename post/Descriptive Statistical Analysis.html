@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 描述性统计分析 -  xiaoqing-blog</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="https://kira.host/assets/Pictures/Others/116359b4ccf19917.jpg"
+			type="image/png"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+			
+				
+<link rel="stylesheet" href="/*%20%EF%BF%BDI7%0F%20-%20%EF%BF%BD%EF%BF%BD%DF%A1%EF%BF%BD%EF%BF%BD%EF%BF%BDH%EF%BF%BD%20*/%0A:root%20%7B%0A%20%20--first-color:%20rgb(49,%20174,%20255);%0A%20%20--second-color:%20rgb(255,%2078,%20106);%0A%20%20--first-color-rgb:%2049,%20174,%20255;%0A%7D%0A%0A/*%20%EF%BF%BD%EF%BF%BD%DF%A17%0F%20*/%0A.stat-item%20%7B%0A%20%20display:%20flex;%0A%20%20justify-content:%20space-between;%0A%20%20align-items:%20center;%0A%20%20padding:%208px%200;%0A%20%20border-bottom:%201px%20solid%20rgba(0,0,0,0.05);%0A%7D%0A%0A.stat-label%20%7B%0A%20%20color:%20#666;%0A%20%20font-size:%200.9rem;%0A%7D%0A%0A.stat-value%20%7B%0A%20%20color:%20var(--first-color);%0A%20%20font-weight:%20bold;%0A%7D%0A%0A/*%20%EF%BF%BD%EF%BF%BDH%EF%BF%BD%20*/%0A.click-effect%20%7B%0A%20%20position:%20fixed;%0A%20%20width:%2020px;%0A%20%20height:%2020px;%0A%20%20border-radius:%2050%25;%0A%20%20background:%20rgba(var(--first-color-rgb),%200.2);%0A%20%20pointer-events:%20none;%0A%20%20z-index:%209998;%0A%20%20animation:%20ripple%201s%20ease-out;%0A%7D%0A%0A@keyframes%20ripple%20%7B%0A%20%200%25%20%7B%0A%20%20%20%20transform:%20scale(0);%0A%20%20%20%20opacity:%201;%0A%20%20%7D%0A%20%20100%25%20%7B%0A%20%20%20%20transform:%20scale(4);%0A%20%20%20%20opacity:%200;%0A%20%20%7D%0A%7D%0A%0A/*%20%EF%BF%BD%EF%BF%BDaG%EF%BF%BD%5CH%EF%BF%BD%20*/%0A.post-card%20%7B%0A%20%20transition:%20all%200.3s%20ease;%0A%7D%0A%0A.post-card:hover%20%7B%0A%20%20transform:%20translateY(-5px);%0A%20%20box-shadow:%200%2010px%2025px%20rgba(var(--first-color-rgb),%200.15);%0A%7D%0A%0A/*%20%09%EF%BF%BD%EF%BF%BD;%20*/%0A.btn%20%7B%0A%20%20transition:%20all%200.3s%20ease;%0A%20%20position:%20relative;%0A%20%20overflow:%20hidden;%0A%7D%0A%0A.btn:hover%20%7B%0A%20%20transform:%20translateY(-2px);%0A%20%20box-shadow:%200%204px%2012px%20rgba(0,0,0,0.15);%0A%7D%0A%0A.btn:active%20%7B%0A%20%20transform:%20scale(0.95);%0A%7D%0A%0A/*%20%DA%A8a%EF%BF%BD%16%20*/%0A::-webkit-scrollbar%20%7B%0A%20%20width:%208px;%0A%7D%0A%0A::-webkit-scrollbar-track%20%7B%0A%20%20background:%20rgba(0,0,0,0.05);%0A%7D%0A%0A::-webkit-scrollbar-thumb%20%7B%0A%20%20background:%20rgba(var(--first-color-rgb),%200.5);%0A%20%20border-radius:%204px;%0A%7D%0A%0A::-webkit-scrollbar-thumb:hover%20%7B%0A%20%20background:%20rgba(var(--first-color-rgb),%200.8);%0A%7D%0A%0A/*%20ub%EF%BF%BD%7D%EF%BF%BD;%20*/%0A.page-loading%20%7B%0A%20%20position:%20fixed;%0A%20%20top:%200;%0A%20%20left:%200;%0A%20%20width:%20100%25;%0A%20%20height:%20100%25;%0A%20%20background:%20white;%0A%20%20display:%20flex;%0A%20%20justify-content:%20center;%0A%20%20align-items:%20center;%0A%20%20z-index:%209999;%0A%20%20animation:%20fadeOut%200.5s%201s%20forwards;%0A%7D%0A%0A@keyframes%20fadeOut%20%7B%0A%20%20to%20%7B%20opacity:%200;%20visibility:%20hidden;%20%7D%0A%7D%0A%0A/*%20%EF%BF%BD%EF%BF%BD%0F%DF%A17%0F%20*/%0A.sidebar-stats%20%7B%0A%20%20background:%20rgba(var(--first-color-rgb),%200.05);%0A%20%20border-radius:%208px;%0A%20%20padding:%2015px;%0A%20%20margin-top:%2020px;%0A%7D%0A%0A.sidebar-stats%20h4%20%7B%0A%20%20color:%20var(--first-color);%0A%20%20margin-bottom:%2010px;%0A%20%20font-size:%201rem;%0A%7D%0A%0A/*%20u%1A%DF%A1%20*/%0A.footer-stats%20%7B%0A%20%20display:%20flex;%0A%20%20justify-content:%20center;%0A%20%20gap:%202rem;%0A%20%20flex-wrap:%20wrap;%0A%20%20margin-top:%201rem;%0A%20%20font-size:%200.9rem;%0A%20%20color:%20#666;%0A%7D%0A%0A.footer-stat-item%20%7B%0A%20%20display:%20flex;%0A%20%20align-items:%20center;%0A%20%20gap:%200.5rem;%0A%7D%0A.css">
+
+			
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('https://kira.host/assets/Pictures/Others/-f0d5cc34c6e5aa7_compressed.jpg')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="xiaoqing-blog">
+        <img
+			src="https://kira.host/assets/Pictures/Others/20220922230447.jpg"
+			alt="Xiao Qing"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a target="_blank" rel="noopener" href="https://kira.host/assets/Pictures/Others/20220922230447.jpg" title="Xiao Qing">
+			<img
+				src="https://kira.host/assets/Pictures/Others/20220922230447.jpg"
+				alt="Xiao Qing"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>6</div>
+		<div><span>标签</span>6</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1393643242&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/2136927990"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/chenjia-q"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/little-green-leaf"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B/" style="font-size: 10px;">业务流程</a> <a href="/tags/%E6%8F%8F%E8%BF%B0%E6%80%A7%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/" style="font-size: 10px;">描述性统计分析</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">数据分析</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/" style="font-size: 10px;">方法论</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">1</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">Xiao Qing</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		<div class="sidebar-stats">
+  <h4>📊 网站统计</h4>
+  <div class="stat-item">
+    <span class="stat-label">文章总数</span>
+    <span class="stat-value" id="post-count">0</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-label">运行天数</span>
+    <span class="stat-value" id="run-days">0</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-label">访客数量</span>
+    <span class="stat-value" id="visitor-count">加载中...</span>
+  </div>
+</div>
+
+<div class="sidebar-notice">
+  <h4>🎯 近期目标</h4>
+  <p>分享更多数据分析技术文章</p>
+  <p>完善个人项目展示</p>
+</div>
+
+<script>
+// 等待页面加载完成
+document.addEventListener('DOMContentLoaded', function() {
+  // 计算文章总数
+  const postElements = document.querySelectorAll('.post-item, article, .post, .md');
+  document.getElementById('post-count').textContent = postElements.length || '0';
+  
+  // 计算运行天数
+  function calculateRunDays() {
+    const startDate = new Date('2025-12-09'); // 修改为你的建站日期
+    const today = new Date();
+    const diffTime = Math.abs(today - startDate);
+    return Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  }
+  document.getElementById('run-days').textContent = calculateRunDays();
+  
+  // 访客计数（示例，你需要接入真实的统计服务）
+  let visitorCount = localStorage.getItem('visitorCount') || 10; // 初始值
+  visitorCount = parseInt(visitorCount) + 1;
+  localStorage.setItem('visitorCount', visitorCount);
+  document.getElementById('visitor-count').textContent = visitorCount;
+  
+  // 或者使用不蒜子统计（推荐）
+  try {
+    // 不蒜子统计脚本
+    const script = document.createElement('script');
+    script.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js';
+    script.async = true;
+    document.head.appendChild(script);
+    
+    // 延迟显示不蒜子统计
+    setTimeout(() => {
+      const busuanziSiteUv = document.querySelector('.busuanzi_value_site_uv');
+      const busuanziSitePv = document.querySelector('.busuanzi_value_site_pv');
+      if (busuanziSiteUv) {
+        document.getElementById('visitor-count').textContent = busuanziSiteUv.textContent;
+      }
+    }, 1000);
+  } catch (e) {
+    console.log('不蒜子统计加载失败:', e);
+  }
+});
+</script>
+
+<style>
+.sidebar-stats {
+  background: rgba(49, 174, 255, 0.05);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.sidebar-stats h4 {
+  color: rgb(49, 174, 255);
+  margin-bottom: 10px;
+  font-size: 1rem;
+  border-left: 3px solid rgb(49, 174, 255);
+  padding-left: 8px;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.stat-label {
+  color: #666;
+}
+
+.stat-value {
+  color: rgb(49, 174, 255);
+  font-weight: bold;
+}
+
+.sidebar-notice {
+  background: rgba(49, 174, 255, 0.05);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.sidebar-notice h4 {
+  color: rgb(49, 174, 255);
+  margin-bottom: 10px;
+  font-size: 1rem;
+  border-left: 3px solid rgb(49, 174, 255);
+  padding-left: 8px;
+}
+
+.sidebar-notice p {
+  margin: 5px 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+</style>
+
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="https://kira.host/assets/Pictures/Others/-f0d5cc34c6e5aa7_compressed.jpg"
+				data-sizes="auto"
+				alt="描述性统计分析"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>描述性统计分析</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2026年02月01日</a>
+			<a><i class="kirafont icon-edit-fill"></i>3.5k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 15 分钟</a>
+		</div>
+		<html><head></head><body><h2><span id="%E5%89%8D%E7%9E%BB">前瞻</span></h2><p>基础的数据分析方法可以分为两大类：描述性统计分析方法和推断性统计分析方法</p>
+<p>描述性统计方法主要结合数据，对实际问题进行分布特征的描述</p>
+<p>推断性统计分析方法主要根据掌握的样本数据对总体进行估计或检验</p>
+<h2><span id="1-%E7%BB%9F%E8%AE%A1%E5%AD%A6%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5">1 统计学的基本概念</span></h2><h3><span id="11-%E6%80%BB%E4%BD%93%E5%92%8C%E6%A0%B7%E6%9C%AC">1.1 总体和样本</span></h3><p><code>总体</code>是指我们所研究的所有元素的集合，其中每个元素称为<code>个体</code><br>我们把从<code>总体</code>中抽取的一部分个体的集合称为<code>样本</code>,样本中个体的数量称为<code>样本容量</code></p>
+<h3><span id="12-%E5%8F%82%E6%95%B0%E5%92%8C%E7%BB%9F%E8%AE%A1%E9%87%8F">1.2 参数和统计量</span></h3><p><code>参数</code>是指总体的某个特征，而<code>统计量</code>是指样本的某个特征</p>
+<p>总体参数和样本统计量的常见符号</p>
+<table>
+<thead>
+<tr>
+<th align="left">总体参数</th>
+<th align="left">符号</th>
+<th align="left">样本统计量</th>
+<th align="left">符号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">总体比例</td>
+<td align="left">(\π)</td>
+<td align="left">样本比例</td>
+<td align="left">(p)</td>
+</tr>
+<tr>
+<td align="left">总体均值</td>
+<td align="left">(\μ)</td>
+<td align="left">样本均值</td>
+<td align="left">(\bar{x})</td>
+</tr>
+<tr>
+<td align="left">总体方差（标准差）</td>
+<td align="left">(\σ^2(\σ))</td>
+<td align="left">样本方差（标准差）</td>
+<td align="left">(s^2(s))</td>
+</tr>
+<tr>
+<td align="left">总体容量</td>
+<td align="left">(N)</td>
+<td align="left">样本容量</td>
+<td align="left">(n)</td>
+</tr>
+</tbody></table>
+<h3><span id="13-%E5%8F%98%E9%87%8F%E5%92%8C%E6%95%B0%E6%8D%AE">1.3 变量和数据</span></h3><p>不同个体的<code>变量</code>有不同的取值，其取值我们称为数据</p>
+<p>(1)<em><strong>数据按照表达形式来划分，可以分为定性数据和定量数据</strong></em></p>
+<p>定性数据是刻画个体性质的数据，如男、女是用于刻画人的性别的定性数据。定性数据从表现形式上看，常表现为文字形式，而用数字来表现的数据则称为定量数据，如人的身高175cm、体重70kg等。需要注意的是，文字和数据有本质的区别，人们常用是否可以运算来作为文字和数字的区别，把能运算的称为数字，把不能运算的称为文字，如70kg+10kg=80kg，则称70kg为数字。有些数据，虽然看起来用阿拉伯数字符号表达，但并不能看作是数字，如用1表示男、用0表示女，这里的0和1并不能看作是数字，因为这里1-1≠0。</p>
+<p>在实际应用中，人们进一步把定性数据分为两种情况：分类数据和顺序数据。分类数据只是事物分类的结果，而顺序数据则是可以排序的分类结果。例如，男、女只是分类数据，并不能排序，不属于顺序数据；收入高、中、低则属于顺序数据，因为高、中、低本身包含了某种顺序的意思</p>
+<p>定量数据也可以进一步细分，根据数据中0是否表示“没有”，定量数据可以分为定距数据和定比数据。例如，温度30℃就属于定距数据，因为0℃并不表示没有，这种数据在实际中应用时，主要考察的是数据之间距离的意义，所以这种数据通常不做除法运算，即不能说30℃是10℃的3倍，因为如果把这两个温度换成华氏度后，它们之间的这种倍数关系并不成立，常用的定距数据还有年份（公元0年是存在的）等。0可以表示“没有”的数据称为定比数据，如收入，因为如果收入是0元，则表示没有收入</p>
+<p>(2)<em><strong>数据按照收集方式划分，可以分为调查数据和实验数据</strong></em><br>调查数据是指通过观察、调查等方式获取得到的数据，它在社会科学的研究中使用较多。实验数据是指通过实验方式获取得到的数据，它在自然科学的研究中使用较多。区分调查数据和实验数据，常可以通过是否对数据对象进行干预来判断</p>
+<h2><span id="2%E6%95%B0%E6%8D%AE%E7%9A%84%E6%8F%8F%E8%BF%B0%E6%80%A7%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90">2.数据的描述性统计分析</span></h2><h3><span id="21-%E5%88%86%E7%B1%BB%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E7%9A%84%E6%8F%8F%E8%BF%B0">2.1 分类数据集中趋势的描述</span></h3><p>众数：不受极端值的影响，具有不唯一性</p>
+<h3><span id="22-%E9%A1%BA%E5%BA%8F%E6%95%B0%E6%8D%AE%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E7%9A%84%E6%8F%8F%E8%BF%B0">2.2 顺序数据集中趋势的描述</span></h3><p>分位数：<br>(1)<em><strong>中位数</strong></em><br>不受极端值的影响<br>一组数据中所有数据与其中位数的离差绝对值之和是最小的</p>
+<p>(2) <em><strong>四分位数</strong></em><br>四分位数的位置有多种定义方式，最常见的如下图：<br><img data-fancybox="gallery" data-sizes="auto" data-src="/images/%E5%9B%9B%E5%88%86%E4%BD%8D%E6%95%B0%E5%85%AC%E5%BC%8F.png" alt="四分位数计算公式" class="lazyload"></p>
+<h3><span id="23-%E6%95%B0%E5%80%BC%E6%95%B0%E6%8D%AE%E7%9A%84%E9%9B%86%E4%B8%AD%E8%B6%8B%E5%8A%BF%E7%9A%84%E6%8F%8F%E8%BF%B0">2.3 数值数据的集中趋势的描述</span></h3><p>(1) <em><strong>算术平均数</strong></em><br>算数平均数是指数据之和与数据个数之比，是最常用的平均数，易受极端值影响</p>
+<p>(2) <em><strong>调和平均数</strong></em><br>调和平均数是指数据倒数的算数平均数的倒数</p>
+<p>(3) <em><strong>几何平均数</strong></em><br>几何平均数是指数据乘积的个数方根，常用符合G表示</p>
+<p>(4) <em><strong>平方平均数</strong></em><br>平方平均数是指数据平方的算数平均数和算数平方根</p>
+<p>四者恒成立的关系如下：<br>平方平均数&gt;=算术平均数&gt;=几何平均数&gt;=调和平均数(受极端值影响也是此关系)</p>
+<p>在数据分析中，对于有极端值的数据，如果需要重点考察极大值的影响，可以使用平方平均数或算术平均数；<br>如果需要重点考察极小值的影响，可以使用调和平均数；<br>如果想要计算最精确的结果，可以使用几何平均数</p>
+<h3><span id="24-%E5%88%86%E7%B1%BB%E6%95%B0%E6%8D%AE%E7%9A%84%E7%A6%BB%E6%95%A3%E7%A8%8B%E5%BA%A6">2.4 分类数据的离散程度</span></h3><p>异众比率：异众比率是指在一组数据中，非众数的频数占总数据个数的比重，一组数据异众比率越大，众数的代表性越差</p>
+<h3><span id="25-%E9%A1%BA%E5%BA%8F%E6%95%B0%E6%8D%AE%E7%9A%84%E7%A6%BB%E6%95%A3%E7%A8%8B%E5%BA%A6">2.5 顺序数据的离散程度</span></h3><p>(1) <em><strong>极差</strong></em><br>极差也称范围，等于一组数据的最大值和最小值之差</p>
+<p>(2) <em><strong>四分位差</strong></em><br>四分位差等于一组数据的上四分位数与下四分位数之差，四分位数是一个局部指标，其衡量了处于中间50%的数据的离散程度，四分位差越大，说明处于中间50%的数据越分散</p>
+<h3><span id="26-%E6%95%B0%E5%80%BC%E6%95%B0%E6%8D%AE%E7%9A%84%E7%A6%BB%E6%95%A3%E7%A8%8B%E5%BA%A6">2.6 数值数据的离散程度</span></h3><p>(1) <em><strong>平均差</strong></em><br>平均差是指数据与其算术平均数离差的绝对值的算术平均数</p>
+<p>(2) <em><strong>方差、标准差</strong></em><br>方差是数据与其算术平均数离差的平方的算术平均数，方差的算术平方根是标准差<br>需要注意的是，计算样本方差、标准差时，分母中需要用n-1，而不是n，这涉及到自由度的概念，总体数据是自由变化的，分母不需要减1<br>对自由度做个通俗解释，如果有10个数，而且知道了均值和其中9个数的值，那么就可以推算出第10个数</p>
+<p>(3) <em><strong>离散系数</strong></em><br>离散系数也称变异系数，由标准差除以算术平均数得出</p>
+<h3><span id="27-%E5%88%86%E5%B8%83%E5%BD%A2%E6%80%81%E7%9A%84%E6%8F%8F%E8%BF%B0">2.7 分布形态的描述</span></h3><p>(1) <em><strong>偏态</strong></em><br>偏态可以用偏态系数(SK)测量:SK = (平均数 - 众数)/标准差<br>SK为正，则为正偏(右偏)，为0，则为无偏(对称)，否则为负偏(左偏)<br>左偏分布中，众数&gt;中位数&gt;算术平均数,右偏相反</p>
+<p>(2) <em><strong>峰态</strong></em><br><img data-fancybox="gallery" data-sizes="auto" data-src="/images/%E5%B3%B0%E6%80%81.png" alt="峰态计算公式" class="lazyload"></p>
+<h2><span id="3%E5%B8%B8%E7%94%A8%E7%9A%84%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%83">3.常用的数据分布</span></h2><h3><span id="31-%E4%B8%A4%E7%82%B9%E5%88%86%E5%B8%83">3.1 两点分布</span></h3><p>两点分布是指只有两个结果的随机事件服从的分布，如抛硬币结果：正面朝上、背面朝上，满意情况：满意、不满意，事件发生情况：发生、不发生。对于有多个结果的随机事件，我们可以通过构建对立事件来得到两点分布，如学校的专业：统计学专业、非统计学专业（含统计学之外的其他所有专业），态度：非常赞成、不非常赞成（含赞成、中立、反对、非常反对等），电器：空调、其他（含空调之外的其他所有电器），即可以借用“非”“不”“其他”等词来构造对立事件。对于两点分布的两个结果，在一次试验中，有且仅有一个结果发生，两个结果“非此即彼”<br>期望：E(x) = p<br>方差: Var(x) = p*(1-p)</p>
+<h3><span id="32-%E4%BA%8C%E9%A1%B9%E5%88%86%E5%B8%83">3.2 二项分布</span></h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/%E4%BA%8C%E9%A1%B9%E5%88%86%E5%B8%83.png" alt="二项分布计算公式" class="lazyload"><br>期望：E(x) = np<br>方差: Var(x) = np*(1-p)</p>
+<h3><span id="33-%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83">3.3 正态分布</span></h3><p>也称常态分布、高斯分布<br><img data-fancybox="gallery" data-sizes="auto" data-src="/images/%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83.png" alt="正态分布计算公式" class="lazyload"></p>
+<h3><span id="34-%E6%A0%87%E5%87%86%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83">3.4 标准正态分布</span></h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/%E6%A0%87%E5%87%86%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%83.png" alt="标准正态分布计算公式" class="lazyload"></p>
+<p>标准正态分布的分布函数表</p>
+<table>
+<thead>
+<tr>
+<th>z</th>
+<th>0.00</th>
+<th>0.01</th>
+<th>0.02</th>
+<th>0.03</th>
+<th>0.04</th>
+<th>0.05</th>
+<th>0.06</th>
+<th>0.07</th>
+<th>0.08</th>
+<th>0.09</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0.0</td>
+<td>0.5000</td>
+<td>0.5040</td>
+<td>0.5080</td>
+<td>0.5120</td>
+<td>0.5160</td>
+<td>0.5199</td>
+<td>0.5239</td>
+<td>0.5279</td>
+<td>0.5319</td>
+<td>0.5359</td>
+</tr>
+<tr>
+<td>0.1</td>
+<td>0.5398</td>
+<td>0.5438</td>
+<td>0.5478</td>
+<td>0.5517</td>
+<td>0.5557</td>
+<td>0.5596</td>
+<td>0.5636</td>
+<td>0.5675</td>
+<td>0.5714</td>
+<td>0.5753</td>
+</tr>
+<tr>
+<td>0.2</td>
+<td>0.5793</td>
+<td>0.5832</td>
+<td>0.5871</td>
+<td>0.5910</td>
+<td>0.5948</td>
+<td>0.5987</td>
+<td>0.6026</td>
+<td>0.6064</td>
+<td>0.6103</td>
+<td>0.6141</td>
+</tr>
+<tr>
+<td>0.3</td>
+<td>0.6179</td>
+<td>0.6217</td>
+<td>0.6255</td>
+<td>0.6293</td>
+<td>0.6331</td>
+<td>0.6368</td>
+<td>0.6406</td>
+<td>0.6443</td>
+<td>0.6480</td>
+<td>0.6517</td>
+</tr>
+<tr>
+<td>0.4</td>
+<td>0.6554</td>
+<td>0.6591</td>
+<td>0.6628</td>
+<td>0.6664</td>
+<td>0.6700</td>
+<td>0.6736</td>
+<td>0.6772</td>
+<td>0.6808</td>
+<td>0.6844</td>
+<td>0.6879</td>
+</tr>
+<tr>
+<td>0.5</td>
+<td>0.6915</td>
+<td>0.6950</td>
+<td>0.6985</td>
+<td>0.7019</td>
+<td>0.7054</td>
+<td>0.7088</td>
+<td>0.7123</td>
+<td>0.7157</td>
+<td>0.7190</td>
+<td>0.7224</td>
+</tr>
+<tr>
+<td>0.6</td>
+<td>0.7257</td>
+<td>0.7291</td>
+<td>0.7324</td>
+<td>0.7357</td>
+<td>0.7389</td>
+<td>0.7422</td>
+<td>0.7454</td>
+<td>0.7486</td>
+<td>0.7517</td>
+<td>0.7549</td>
+</tr>
+<tr>
+<td>0.7</td>
+<td>0.7580</td>
+<td>0.7611</td>
+<td>0.7642</td>
+<td>0.7673</td>
+<td>0.7704</td>
+<td>0.7734</td>
+<td>0.7764</td>
+<td>0.7794</td>
+<td>0.7823</td>
+<td>0.7852</td>
+</tr>
+<tr>
+<td>0.8</td>
+<td>0.7881</td>
+<td>0.7910</td>
+<td>0.7939</td>
+<td>0.7967</td>
+<td>0.7995</td>
+<td>0.8023</td>
+<td>0.8051</td>
+<td>0.8078</td>
+<td>0.8106</td>
+<td>0.8133</td>
+</tr>
+<tr>
+<td>0.9</td>
+<td>0.8159</td>
+<td>0.8186</td>
+<td>0.8212</td>
+<td>0.8238</td>
+<td>0.8264</td>
+<td>0.8289</td>
+<td>0.8315</td>
+<td>0.8340</td>
+<td>0.8365</td>
+<td>0.8389</td>
+</tr>
+<tr>
+<td>1.0</td>
+<td>0.8413</td>
+<td>0.8438</td>
+<td>0.8461</td>
+<td>0.8485</td>
+<td>0.8508</td>
+<td>0.8531</td>
+<td>0.8554</td>
+<td>0.8577</td>
+<td>0.8599</td>
+<td>0.8621</td>
+</tr>
+<tr>
+<td>1.1</td>
+<td>0.8643</td>
+<td>0.8665</td>
+<td>0.8686</td>
+<td>0.8708</td>
+<td>0.8729</td>
+<td>0.8749</td>
+<td>0.8770</td>
+<td>0.8790</td>
+<td>0.8810</td>
+<td>0.8830</td>
+</tr>
+<tr>
+<td>1.2</td>
+<td>0.8849</td>
+<td>0.8869</td>
+<td>0.8888</td>
+<td>0.8907</td>
+<td>0.8925</td>
+<td>0.8944</td>
+<td>0.8962</td>
+<td>0.8980</td>
+<td>0.8997</td>
+<td>0.9015</td>
+</tr>
+<tr>
+<td>1.3</td>
+<td>0.9032</td>
+<td>0.9049</td>
+<td>0.9066</td>
+<td>0.9082</td>
+<td>0.9099</td>
+<td>0.9115</td>
+<td>0.9131</td>
+<td>0.9147</td>
+<td>0.9162</td>
+<td>0.9177</td>
+</tr>
+<tr>
+<td>1.4</td>
+<td>0.9192</td>
+<td>0.9207</td>
+<td>0.9222</td>
+<td>0.9236</td>
+<td>0.9251</td>
+<td>0.9265</td>
+<td>0.9279</td>
+<td>0.9292</td>
+<td>0.9306</td>
+<td>0.9319</td>
+</tr>
+<tr>
+<td>1.5</td>
+<td>0.9332</td>
+<td>0.9345</td>
+<td>0.9357</td>
+<td>0.9370</td>
+<td>0.9382</td>
+<td>0.9394</td>
+<td>0.9406</td>
+<td>0.9418</td>
+<td>0.9429</td>
+<td>0.9441</td>
+</tr>
+<tr>
+<td>1.6</td>
+<td>0.9452</td>
+<td>0.9463</td>
+<td>0.9474</td>
+<td>0.9484</td>
+<td>0.9495</td>
+<td>0.9505</td>
+<td>0.9515</td>
+<td>0.9525</td>
+<td>0.9535</td>
+<td>0.9545</td>
+</tr>
+<tr>
+<td>1.7</td>
+<td>0.9554</td>
+<td>0.9564</td>
+<td>0.9573</td>
+<td>0.9582</td>
+<td>0.9591</td>
+<td>0.9599</td>
+<td>0.9608</td>
+<td>0.9616</td>
+<td>0.9625</td>
+<td>0.9633</td>
+</tr>
+<tr>
+<td>1.8</td>
+<td>0.9641</td>
+<td>0.9649</td>
+<td>0.9656</td>
+<td>0.9664</td>
+<td>0.9671</td>
+<td>0.9678</td>
+<td>0.9686</td>
+<td>0.9693</td>
+<td>0.9699</td>
+<td>0.9706</td>
+</tr>
+<tr>
+<td>1.9</td>
+<td>0.9713</td>
+<td>0.9719</td>
+<td>0.9726</td>
+<td>0.9732</td>
+<td>0.9738</td>
+<td>0.9744</td>
+<td>0.9750</td>
+<td>0.9756</td>
+<td>0.9761</td>
+<td>0.9767</td>
+</tr>
+<tr>
+<td>2.0</td>
+<td>0.9772</td>
+<td>0.9778</td>
+<td>0.9783</td>
+<td>0.9788</td>
+<td>0.9793</td>
+<td>0.9798</td>
+<td>0.9803</td>
+<td>0.9808</td>
+<td>0.9812</td>
+<td>0.9817</td>
+</tr>
+<tr>
+<td>2.1</td>
+<td>0.9821</td>
+<td>0.9826</td>
+<td>0.9830</td>
+<td>0.9834</td>
+<td>0.9838</td>
+<td>0.9842</td>
+<td>0.9846</td>
+<td>0.9850</td>
+<td>0.9854</td>
+<td>0.9857</td>
+</tr>
+<tr>
+<td>2.2</td>
+<td>0.9861</td>
+<td>0.9864</td>
+<td>0.9868</td>
+<td>0.9871</td>
+<td>0.9875</td>
+<td>0.9878</td>
+<td>0.9881</td>
+<td>0.9884</td>
+<td>0.9887</td>
+<td>0.9890</td>
+</tr>
+<tr>
+<td>2.3</td>
+<td>0.9893</td>
+<td>0.9896</td>
+<td>0.9898</td>
+<td>0.9901</td>
+<td>0.9904</td>
+<td>0.9906</td>
+<td>0.9909</td>
+<td>0.9911</td>
+<td>0.9913</td>
+<td>0.9916</td>
+</tr>
+<tr>
+<td>2.4</td>
+<td>0.9918</td>
+<td>0.9920</td>
+<td>0.9922</td>
+<td>0.9925</td>
+<td>0.9927</td>
+<td>0.9929</td>
+<td>0.9931</td>
+<td>0.9932</td>
+<td>0.9934</td>
+<td>0.9936</td>
+</tr>
+<tr>
+<td>2.5</td>
+<td>0.9938</td>
+<td>0.9940</td>
+<td>0.9941</td>
+<td>0.9943</td>
+<td>0.9945</td>
+<td>0.9946</td>
+<td>0.9948</td>
+<td>0.9949</td>
+<td>0.9951</td>
+<td>0.9952</td>
+</tr>
+<tr>
+<td>2.6</td>
+<td>0.9953</td>
+<td>0.9955</td>
+<td>0.9956</td>
+<td>0.9957</td>
+<td>0.9959</td>
+<td>0.9960</td>
+<td>0.9961</td>
+<td>0.9962</td>
+<td>0.9963</td>
+<td>0.9964</td>
+</tr>
+<tr>
+<td>2.7</td>
+<td>0.9965</td>
+<td>0.9966</td>
+<td>0.9967</td>
+<td>0.9968</td>
+<td>0.9969</td>
+<td>0.9970</td>
+<td>0.9971</td>
+<td>0.9972</td>
+<td>0.9973</td>
+<td>0.9974</td>
+</tr>
+<tr>
+<td>2.8</td>
+<td>0.9974</td>
+<td>0.9975</td>
+<td>0.9976</td>
+<td>0.9977</td>
+<td>0.9977</td>
+<td>0.9978</td>
+<td>0.9979</td>
+<td>0.9979</td>
+<td>0.9980</td>
+<td>0.9981</td>
+</tr>
+</tbody></table>
+<p>需要注意的是：<br><img data-fancybox="gallery" data-sizes="auto" data-src="/images/%E6%A0%87%E5%87%86%E6%AD%A3%E6%80%81%E5%88%86%E5%B8%832.png" alt="标准正态分布计算公式" class="lazyload"></p>
+<h3><span id="35-%E5%8D%A1%E6%96%B9%E5%88%86%E5%B8%83">3.5 卡方分布</span></h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/%E5%8D%A1%E6%96%B9%E5%88%86%E5%B8%83.png" alt="卡方分布计算公式" class="lazyload"></p>
+<h3><span id="36-t%E5%88%86%E5%B8%83">3.6 t分布</span></h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/t%E5%88%86%E5%B8%83.png" alt="t分布计算公式" class="lazyload"></p>
+<p>t分布的性质和特点：<br><img data-fancybox="gallery" data-sizes="auto" data-src="/images/t%E5%88%86%E5%B8%832.png" alt="t分布计算公式" class="lazyload"></p>
+<h3><span id="37-f%E5%88%86%E5%B8%83">3.7 F分布</span></h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/F%E5%88%86%E5%B8%83.png" alt="F分布计算公式" class="lazyload"><br><img data-fancybox="gallery" data-sizes="auto" data-src="/images/F%E5%88%86%E5%B8%832.png" alt="F分布计算公式" class="lazyload"></p>
+<h2><span id="4-%E7%9B%B8%E5%85%B3%E5%88%86%E6%9E%90">4 相关分析</span></h2><h3><span id="41-%E7%9B%B8%E5%85%B3%E5%88%86%E6%9E%90%E7%9A%84%E5%90%AB%E4%B9%89">4.1 相关分析的含义</span></h3><p>(1) <em><strong>变量之间的关系按照强弱来划分，常可以分为函数关系、相关关系、没有关系</strong></em></p>
+<p>函数关系是指变量之间存在关系，且关系是确定的，即给出一个 ( X )，有且只有一个 ( Y ) 与其相对应，则称 ( Y ) 是 ( X ) 的函数。例如，在单价确定的情况下，产品销售额与销售量之间就是这种函数关系。相关关系是指变量之间有联系，但关系不确定。例如，个人的月消费额与个人月收入存在关系，但这种关系并不确定，月收入提高 100 元，月消费不一定变化某个额度，也就是说，个人的月消费额与月收入之间就是一种相关关系。没有关系也称独立，指两个变量之间不存在一个变量影响另一个变量的情形，其常用于刻画没有关联的事物之间的关系。在数据分析的实际工作中，相关关系是最常见的，也是数据分析的重点。函数关系的研究常常借用已有函数关系来表达，没有关系的变量在确定没有关系之后是无须研究的</p>
+<p>从极限的角度看，函数关系可以看作是相关关系的极限，是强相关关系的极限；没有关系也可以看作是相关关系的极限，是弱相关关系的极限</p>
+<p>(2) <em><strong>变量之间的关系按照形式来划分，可以分为线性关系和非线性关系</strong></em><br>线性关系是指变量之间的变化按直线波动，非线性关系则按照非线性波动，非线性的具体形式非常复杂，如二次函数形式、对数形式、指数形式、正弦函数形式等。在实际数据分析中，我们常重点研究在线性关系的变量，主要的原因是线性关系相较于非线性关系相对直观一些，更易于理解，并且线性关系是非线性关系的基础，大部分非线性关系都可以转化为线性关系来研究</p>
+<p>(3)<em><strong>变量之间的关系按照数量来划分，可以分为简单关系和多重关系</strong></em><br>简单关系常指两个变量的关系，即一对一的关系；多重关系也称复杂关系，是指多个变量的关系，具体可以分为一对多的关系、多对多的关系。在实际数据分析中，简单关系和多重关系都是研究的重点，其中简单关系是基础，多重关系的研究可以从简单关系的角度来理解</p>
+<h3><span id="42-person%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0">4.2 person相关系数</span></h3><p><img data-fancybox="gallery" data-sizes="auto" data-src="/images/person%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0.png" alt="person相关系数" class="lazyload"></p>
+</body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>Xiao Qing<br>
+        <strong>本文链接：</strong><a href="https://chenjia-q.github.io/post/Descriptive%20Statistical%20Analysis.html" title="https:&#x2F;&#x2F;chenjia-q.github.io&#x2F;post&#x2F;Descriptive Statistical Analysis.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;chenjia-q.github.io&#x2F;post&#x2F;Descriptive Statistical Analysis.html</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/%E6%8F%8F%E8%BF%B0%E6%80%A7%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/" rel="tag">描述性统计分析</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+	<link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css" />
+	<div id="gitalk"></div>
+	<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+	<script type="text/javascript">
+		const gitalk = new Gitalk({
+			clientID: 'Ov23ligqH2phvfWqedFc',
+			clientSecret: '06a62ec6e5b639e05d1a7519e01886456a0cf12a',
+			id: '描述性统计分析',
+			repo: 'laughing-octo-eureka',
+			owner: 'chenjia-q-',
+			admin: 'chenjia-q',
+			title: '博客评论',
+		});
+		gitalk.render('gitalk');
+	</script>
+
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="chenjia-q/laughing-octo-eureka"
+      data-repo-id="R_kgDOQrmE2g"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOQrmE2s4C1tY6"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="light"
+      data-lang="en"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>
