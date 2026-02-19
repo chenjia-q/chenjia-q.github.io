@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html 
+	lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 业务分析 -  xiaoqing-blog</title>
+		<!-- <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> -->
+		<!-- <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script> -->
+		
+<link rel="stylesheet" href="/lib/mdui/mdui.min.css">
+
+		
+<script src="/lib/mdui/mdui.min.js"></script>
+
+		<!-- lazyload -->
+		
+<script src="/lib/lazysizes.js"></script>
+
+		<!-- smooth-scrolling -->
+		
+<script src="/lib/smooth-scrolling.js"></script>
+
+		<!-- highlight -->
+		
+<link rel="stylesheet" href="/lib/highlight/atom-one-dark.min.css">
+
+		
+<script src="/lib/highlight/highlight.min.js"></script>
+
+		<!-- 预置 kiraicon -->
+		
+<link rel="stylesheet" href="/lib/iconfont/iconfont.css">
+
+		
+		<link
+			rel="shortcut icon"
+			href="https://kira.host/assets/Pictures/Others/116359b4ccf19917.jpg"
+			type="image/png"
+		/>
+		
+<link rel="stylesheet" href="/deps/css/APlayer.min.css">
+
+		
+			
+				
+<link rel="stylesheet" href="/*%20%EF%BF%BDI7%0F%20-%20%EF%BF%BD%EF%BF%BD%DF%A1%EF%BF%BD%EF%BF%BD%EF%BF%BDH%EF%BF%BD%20*/%0A:root%20%7B%0A%20%20--first-color:%20rgb(49,%20174,%20255);%0A%20%20--second-color:%20rgb(255,%2078,%20106);%0A%20%20--first-color-rgb:%2049,%20174,%20255;%0A%7D%0A%0A/*%20%EF%BF%BD%EF%BF%BD%DF%A17%0F%20*/%0A.stat-item%20%7B%0A%20%20display:%20flex;%0A%20%20justify-content:%20space-between;%0A%20%20align-items:%20center;%0A%20%20padding:%208px%200;%0A%20%20border-bottom:%201px%20solid%20rgba(0,0,0,0.05);%0A%7D%0A%0A.stat-label%20%7B%0A%20%20color:%20#666;%0A%20%20font-size:%200.9rem;%0A%7D%0A%0A.stat-value%20%7B%0A%20%20color:%20var(--first-color);%0A%20%20font-weight:%20bold;%0A%7D%0A%0A/*%20%EF%BF%BD%EF%BF%BDH%EF%BF%BD%20*/%0A.click-effect%20%7B%0A%20%20position:%20fixed;%0A%20%20width:%2020px;%0A%20%20height:%2020px;%0A%20%20border-radius:%2050%25;%0A%20%20background:%20rgba(var(--first-color-rgb),%200.2);%0A%20%20pointer-events:%20none;%0A%20%20z-index:%209998;%0A%20%20animation:%20ripple%201s%20ease-out;%0A%7D%0A%0A@keyframes%20ripple%20%7B%0A%20%200%25%20%7B%0A%20%20%20%20transform:%20scale(0);%0A%20%20%20%20opacity:%201;%0A%20%20%7D%0A%20%20100%25%20%7B%0A%20%20%20%20transform:%20scale(4);%0A%20%20%20%20opacity:%200;%0A%20%20%7D%0A%7D%0A%0A/*%20%EF%BF%BD%EF%BF%BDaG%EF%BF%BD%5CH%EF%BF%BD%20*/%0A.post-card%20%7B%0A%20%20transition:%20all%200.3s%20ease;%0A%7D%0A%0A.post-card:hover%20%7B%0A%20%20transform:%20translateY(-5px);%0A%20%20box-shadow:%200%2010px%2025px%20rgba(var(--first-color-rgb),%200.15);%0A%7D%0A%0A/*%20%09%EF%BF%BD%EF%BF%BD;%20*/%0A.btn%20%7B%0A%20%20transition:%20all%200.3s%20ease;%0A%20%20position:%20relative;%0A%20%20overflow:%20hidden;%0A%7D%0A%0A.btn:hover%20%7B%0A%20%20transform:%20translateY(-2px);%0A%20%20box-shadow:%200%204px%2012px%20rgba(0,0,0,0.15);%0A%7D%0A%0A.btn:active%20%7B%0A%20%20transform:%20scale(0.95);%0A%7D%0A%0A/*%20%DA%A8a%EF%BF%BD%16%20*/%0A::-webkit-scrollbar%20%7B%0A%20%20width:%208px;%0A%7D%0A%0A::-webkit-scrollbar-track%20%7B%0A%20%20background:%20rgba(0,0,0,0.05);%0A%7D%0A%0A::-webkit-scrollbar-thumb%20%7B%0A%20%20background:%20rgba(var(--first-color-rgb),%200.5);%0A%20%20border-radius:%204px;%0A%7D%0A%0A::-webkit-scrollbar-thumb:hover%20%7B%0A%20%20background:%20rgba(var(--first-color-rgb),%200.8);%0A%7D%0A%0A/*%20ub%EF%BF%BD%7D%EF%BF%BD;%20*/%0A.page-loading%20%7B%0A%20%20position:%20fixed;%0A%20%20top:%200;%0A%20%20left:%200;%0A%20%20width:%20100%25;%0A%20%20height:%20100%25;%0A%20%20background:%20white;%0A%20%20display:%20flex;%0A%20%20justify-content:%20center;%0A%20%20align-items:%20center;%0A%20%20z-index:%209999;%0A%20%20animation:%20fadeOut%200.5s%201s%20forwards;%0A%7D%0A%0A@keyframes%20fadeOut%20%7B%0A%20%20to%20%7B%20opacity:%200;%20visibility:%20hidden;%20%7D%0A%7D%0A%0A/*%20%EF%BF%BD%EF%BF%BD%0F%DF%A17%0F%20*/%0A.sidebar-stats%20%7B%0A%20%20background:%20rgba(var(--first-color-rgb),%200.05);%0A%20%20border-radius:%208px;%0A%20%20padding:%2015px;%0A%20%20margin-top:%2020px;%0A%7D%0A%0A.sidebar-stats%20h4%20%7B%0A%20%20color:%20var(--first-color);%0A%20%20margin-bottom:%2010px;%0A%20%20font-size:%201rem;%0A%7D%0A%0A/*%20u%1A%DF%A1%20*/%0A.footer-stats%20%7B%0A%20%20display:%20flex;%0A%20%20justify-content:%20center;%0A%20%20gap:%202rem;%0A%20%20flex-wrap:%20wrap;%0A%20%20margin-top:%201rem;%0A%20%20font-size:%200.9rem;%0A%20%20color:%20#666;%0A%7D%0A%0A.footer-stat-item%20%7B%0A%20%20display:%20flex;%0A%20%20align-items:%20center;%0A%20%20gap:%200.5rem;%0A%7D%0A.css">
+
+			
+		
+		
+<script src="/deps/js/APlayer.min.js"></script>
+<script src="/deps/js/Meting.min.js"></script>
+
+	<meta name="generator" content="Hexo 7.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('https://kira.host/assets/Pictures/Others/-f0d5cc34c6e5aa7_compressed.jpg')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="xiaoqing-blog">
+        <img
+			src="https://kira.host/assets/Pictures/Others/20220922230447.jpg"
+			alt="Xiao Qing"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a target="_blank" rel="noopener" href="https://kira.host/assets/Pictures/Others/20220922230447.jpg" title="Xiao Qing">
+			<img
+				src="https://kira.host/assets/Pictures/Others/20220922230447.jpg"
+				alt="Xiao Qing"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>7</div>
+		<div><span>标签</span>7</div>
+		<div><span>分类</span>0</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont
+					
+						icon-home
+					"
+			></i>
+			<div class="kira-list-item-content">
+				回到首页
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont
+					
+						icon-container
+					"
+			></i>
+			<div class="kira-list-item-content">
+				文章归档
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont
+					
+						icon-user
+					"
+			></i>
+			<div class="kira-list-item-content">
+				关于本人
+			</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/friends.html"
+			title="我的朋友"
+		>
+			<i
+				class="kirafont
+					
+						icon-team
+					"
+			></i>
+			<div class="kira-list-item-content">
+				我的朋友
+			</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		
+			<div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		
+			<a
+				class="mdui-ripple"
+				href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=1393643242&website=www.oicqzone.com"
+				target="_blank"
+				mdui-tooltip="{content: 'QQ'}"
+				style="color: rgb(49, 174, 255); background-color: rgba(49, 174, 255, .1);"
+			>
+				<i
+					class="kirafont
+					
+						icon-QQ
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://space.bilibili.com/2136927990"
+				target="_blank"
+				mdui-tooltip="{content: '哔哩哔哩'}"
+				style="color: rgb(231, 106, 141); background-color: rgba(231, 106, 141, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-bilibili
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://github.com/chenjia-q"
+				target="_blank"
+				mdui-tooltip="{content: 'GitHub'}"
+				style="color: rgb(25, 23, 23); background-color: rgba(25, 23, 23, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-github
+					"
+				></i>
+			</a>
+		
+			<a
+				class="mdui-ripple"
+				href="https://gitee.com/little-green-leaf"
+				target="_blank"
+				mdui-tooltip="{content: 'Gitee'}"
+				style="color: rgb(165, 15, 15); background-color: rgba(165, 15, 15, .15);"
+			>
+				<i
+					class="kirafont
+					
+						icon-gitee
+					"
+				></i>
+			</a>
+		
+	</div>
+</div>
+
+		
+			
+		
+			
+	<div class="kira-widget-wrap">
+		<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow">
+			<a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90/" style="font-size: 10px;">业务分析</a> <a href="/tags/%E4%B8%9A%E5%8A%A1%E6%B5%81%E7%A8%8B/" style="font-size: 10px;">业务流程</a> <a href="/tags/%E6%8F%8F%E8%BF%B0%E6%80%A7%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/" style="font-size: 10px;">描述性统计分析</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" style="font-size: 10px;">数据分析</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 10px;">数据库</a> <a href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/" style="font-size: 10px;">方法论</a>
+		</div>
+		
+	</div>
+
+
+		
+			
+	<div class="kira-widget-wrap">
+		<h3 class="kira-widget-title">
+			文章归档
+		</h3>
+		<div class="kira-widget">
+			<ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/">2026</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/">2025</a><span class="archive-list-count">1</span></li></ul>
+		</div>
+	</div>
+
+
+		
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2026
+		<a href="/">Xiao Qing</a>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		<div class="sidebar-stats">
+  <h4>📊 网站统计</h4>
+  <div class="stat-item">
+    <span class="stat-label">文章总数</span>
+    <span class="stat-value" id="post-count">0</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-label">运行天数</span>
+    <span class="stat-value" id="run-days">0</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-label">访客数量</span>
+    <span class="stat-value" id="visitor-count">加载中...</span>
+  </div>
+</div>
+
+<div class="sidebar-notice">
+  <h4>🎯 近期目标</h4>
+  <p>分享更多数据分析技术文章</p>
+  <p>完善个人项目展示</p>
+</div>
+
+<script>
+// 等待页面加载完成
+document.addEventListener('DOMContentLoaded', function() {
+  // 计算文章总数
+  const postElements = document.querySelectorAll('.post-item, article, .post, .md');
+  document.getElementById('post-count').textContent = postElements.length || '0';
+  
+  // 计算运行天数
+  function calculateRunDays() {
+    const startDate = new Date('2025-12-09'); // 修改为你的建站日期
+    const today = new Date();
+    const diffTime = Math.abs(today - startDate);
+    return Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  }
+  document.getElementById('run-days').textContent = calculateRunDays();
+  
+  // 访客计数（示例，你需要接入真实的统计服务）
+  let visitorCount = localStorage.getItem('visitorCount') || 10; // 初始值
+  visitorCount = parseInt(visitorCount) + 1;
+  localStorage.setItem('visitorCount', visitorCount);
+  document.getElementById('visitor-count').textContent = visitorCount;
+  
+  // 或者使用不蒜子统计（推荐）
+  try {
+    // 不蒜子统计脚本
+    const script = document.createElement('script');
+    script.src = '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js';
+    script.async = true;
+    document.head.appendChild(script);
+    
+    // 延迟显示不蒜子统计
+    setTimeout(() => {
+      const busuanziSiteUv = document.querySelector('.busuanzi_value_site_uv');
+      const busuanziSitePv = document.querySelector('.busuanzi_value_site_pv');
+      if (busuanziSiteUv) {
+        document.getElementById('visitor-count').textContent = busuanziSiteUv.textContent;
+      }
+    }, 1000);
+  } catch (e) {
+    console.log('不蒜子统计加载失败:', e);
+  }
+});
+</script>
+
+<style>
+.sidebar-stats {
+  background: rgba(49, 174, 255, 0.05);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.sidebar-stats h4 {
+  color: rgb(49, 174, 255);
+  margin-bottom: 10px;
+  font-size: 1rem;
+  border-left: 3px solid rgb(49, 174, 255);
+  padding-left: 8px;
+}
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.stat-label {
+  color: #666;
+}
+
+.stat-value {
+  color: rgb(49, 174, 255);
+  font-weight: bold;
+}
+
+.sidebar-notice {
+  background: rgba(49, 174, 255, 0.05);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.sidebar-notice h4 {
+  color: rgb(49, 174, 255);
+  margin-bottom: 10px;
+  font-size: 1rem;
+  border-left: 3px solid rgb(49, 174, 255);
+  padding-left: 8px;
+}
+
+.sidebar-notice p {
+  margin: 5px 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+</style>
+
+	</div>
+</div>
+<div
+	class="kira-sidebar-modal"
+	id="sidebar-modal"
+	onclick="(function(self) {
+		self.classList.remove('show');
+		document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+	})(this)"
+></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+
+<script src="/js/kira-image.js"></script>
+
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+<link rel="stylesheet" href="/css/kira-code-copy.css">
+
+	
+<script src="/js/kira-code-copy.js"></script>
+
+
+<div class="kira-post">
+	<article>
+		
+		<div
+			class="kira-post-cover"
+			style="padding-bottom: '56.25%'"
+		>
+			<img
+				data-src="https://kira.host/assets/Pictures/Others/-f0d5cc34c6e5aa7_compressed.jpg"
+				data-sizes="auto"
+				alt="业务分析"
+				class="lazyload kira-post-cover-image disabled-kira-image"
+			/>
+			<h1>业务分析</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2026年02月09日</a>
+			<a><i class="kirafont icon-edit-fill"></i>7.2k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 29 分钟</a>
+		</div>
+		<html><head></head><body><h2><span id="1-%E4%B8%9A%E5%8A%A1%E6%8C%87%E6%A0%87%E5%88%86%E6%9E%90">1 业务指标分析</span></h2><p><code>指标</code>是某种观测或行为的数值量化方法，而具体量化计算后得到的数值结果则被称为<code>指标值</code></p>
+<p>指标值的作用是帮助阅读者观测企业经营结果好坏情况的窗口</p>
+<p>指标 = 度量 + 汇总计算规则<br>指标值 = 维度项 + 度量 + 汇总计算规则</p>
+<h3><span id="11-%E9%80%9A%E7%94%A8%E6%8C%87%E6%A0%87%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95">1.1 通用指标计算方法</span></h3><p><em><strong>求和类指标计算方法</strong></em><br>(1)常规求和计算方法<br>用来计算维度项下包含的所有度量值的合计值。一次业务行为产生一个度量值结果，将维度项下所有度量值进行加总得到的合计值可以代表该维度项下产生的所有业务行为结果的总体水平。阅读者通过对不同维度项下的不同合计值结果进行对比，可以进一步了解不同维度项间的业务水平差异情况，进而理解每个维度项的业务特征</p>
+<p>(2)累计求和计算方法<br>用于计算到当前维度项为止的所有度量值的累计合计值的计算方法。累计求和计算方法经常在有前后顺序逻辑关系的维度项下使用，目的是帮助阅读者了解截止到当前维度项的所有维度项下业务行为结果的整体情况。阅读者还可以进一步通过对比不同阶段维度项下的累计合计值的差异情况，了解不同阶段业务行为的进度特征</p>
+<p><em><strong>计数类指标计算方法</strong></em><br>(1) 常规计算方法<br>常规计数方法统计维度项下度量值的总个数，在表结构数据中，度量值的总个数就是度量值出现的行数，因为表结构数据中所有字段的行数相同，所以原则上对表中任意字段进行常规计数，得到的结果都是相同的。但是要注意的是，在大多数分析工具中的常规计数规则是非空计数，也就是当维度项下的度量值中包含空值内容时，空值内容将不被计入结果中。所以为了计数结果能够完整、准确，在表结构数据中，往往将非空字段作为度量字段使用<br>因为表结构数据中的行数就是主键值的个数，而主键是业务行为的记录单位，一个主键值代表发生的一次业务行为，所以常规计数主要用于帮助阅读者了解维度项下业务行为出现的总次数。阅读者如果将不同维度项下的计数结果进行对比，还可以进一步了解到每个维度项下发生业务行为的多少差异，从而判断出各个维度项参与的业务行为中的程度特征</p>
+<p>(2) 非重复计算方法<br>计算逻辑是统计维度项下不重复的度量值的总个数。计算的对象多以文本型字段为主，目的是帮助阅读者了解各个维度项下包含的非重复度量值个数的差异情况</p>
+<p><em><strong>比较类指标计算方法</strong></em><br>(1) 均比计算方法<br>计算逻辑:<br>各个不同维度项下的汇总值与所有维度项的总平均值进行对比。</p>
+<p>平均值:<br>在一般情况下为总体汇总值的算术平均值。</p>
+<p>使用目的:<br>描述各个维度项的表现水平与整体平均水平的差异程度。通过均比指标值可帮助阅读者识别表现突出或不足的维度项个体</p>
+<p>均比指标值:</p>
+<p>① <strong>均比差异值</strong>：汇总值 - 总平均值</p>
+<p>② <strong>均比差异百分比</strong>：（汇总值 - 总平均值）/ 总平均值 × 100%</p>
+<p>使用均比指标值时的注意事项：</p>
+<p>① 均比计算中使用的总平均值一般多以算术平均值为主，算术平均值计算简单且能够较好地描述分析维度整体的综合表现情况，但它容易受到极端值影响，所以若分析中使用的样本对象的数值彼此间存在较大差异，则不适合使用均比计算方法。</p>
+<p>② 当分析对象的行为结果受多种外部因素影响，均值无法代表分析对象主体能力水平的高低时，不适合使用均比计算方法</p>
+<p>(2) 基准比计算方法<br>计算逻辑:<br>各个不同维度项下的汇总值与某个基准值之间进行对比</p>
+<p>基准值:<br>一个被绝大多数群体普遍认可的数字，如衡量考试成绩的60分及格线就是最有代表性的基准值之一</p>
+<p>使用目的:<br>描述各个维度项的表现水平与基准水平间的差异程度。通过基准比指标值可以帮助阅读者直观了解各维度项表现水平的类别归属情况，进而帮助阅读者了解各维度项表现水平的好坏程度</p>
+<p>基准比指标值:</p>
+<p>① <strong>基准比差异值</strong>：汇总值 - 基准值</p>
+<p>② <strong>基准比差异百分比</strong>：（汇总值 - 基准值）/ 基准值 × 100%</p>
+<p>使用基准比指标值时注意事项:</p>
+<p>① 作为基准值使用的数字应是被广泛认可或者由权威机构、个人定义的数字。</p>
+<p>② 当分析对象的行为结果受多种外部因素影响，基准比无法代表分析对象主体能力水平的高低时，不适合使用基准比计算方法</p>
+<p>(3) 标准比计算方法<br>计算逻辑:<br>各个不同维度项下的汇总值与标准值之间进行对比。</p>
+<p>标准值:<br>标准维度项的汇总值。标准维度项是指在维度整体中作为衡量各个不同维度项行为结果好坏程度的标准使用的维度项。例如，为了衡量某生产车间中各技术员工工作效率的高低程度，可以将所有技术员工中工作熟练度在中等偏上，并且发挥稳定的技术员工的工作效率作为衡量其他技术员工工作效率高低的标准使用。在同一时间条件下，比该名员工工作效率更高的员工可以界定为工作效率高的员工，反之可以界定为工作效率偏低的员工</p>
+<p>使用目的:<br>标准比计算方法是谁比计算方法的拓展计算方式。其使用目的与基准比计算方法类似，用标准值划分数值区间为标准值上与标准值下两部分，根据各维度项汇总值到标准值的差异程度来判断维度项汇总值行为结果的差异程度</p>
+<p>标准化代替基准比使用的好处是可以排除周围环境对观测对象行为结果产生的影响。例如，如果用基准值60分及格线衡量某班级每名学生在某次考题难度非常大的考试中的成绩水平，那么绝大多数人的成绩都可能低于及格线，但我们很难通过这次考试成绩来界定不及格的考生都是学习水平偏低的学生，因为考题难度大成为考试成绩的外部重要影响因素</p>
+<p>标准比指标值:</p>
+<p>① <strong>标准比差异值</strong>：汇总值 - 标准值</p>
+<p>② <strong>标准比差异百分比</strong>：（汇总值 - 标准值）/ 标准值 × 100%</p>
+<p>使用标准比指标值时的注意事项:</p>
+<p>① 在一般情况下，成为标准维度项应具有发挥稳定的特征，如果标准维度项自身的发挥水平波动大，那么被观测的其他维度项的真实水平将变得难以评估。</p>
+<p>② 使用标准比计算方法时，应尽量减少外部条件或环境的差异对标准比指标值产生的影响。要尽量保证标准维度项与其他维度项处在相同条件或环境下。</p>
+<p>(4) 目标比计算方法<br>计算逻辑:<br>各个不同维度项下的汇总值与各自的目标值之间进行对比</p>
+<p>目标值:<br>根据维度项所处环境、自身能力水平、企业要达到的目的等多方因素综合考虑后设定给每个维度项的目标数字</p>
+<p>使用目的:<br>根据维度项的实际汇总值与目标值之间的差异情况来了解维度项行为结果的好坏程度。目标比计算方法经常在为维度项进行业务绩效考核时使用。例如，某家企业为销售团队中每名销售人员分配不同的销售目标，根据销售目标的达成程度来为销售人员的工作表现进行绩效考核，若未完成销售目标，则只能拿底薪收入；若超额完成销售目标，则超过的程度越高，可以享受到的销售提成占比越高</p>
+<p>目标比指标值:</p>
+<p>① <strong>目标比差异值</strong>：汇总值 - 目标值</p>
+<p>② <strong>目标完成率</strong>：汇总值 / 目标值 × 100%</p>
+<p>③ <strong>目标比差异百分比</strong>：（汇总值 - 目标值）/ 目标值 × 100%</p>
+<p>使用目标比指标值时的注意事项:</p>
+<p>① 因为可以为不同维度项设定不同的目标值，所以目标比计算方法可以有效回避外部环境对维度项业务行为结果产生的影响，阅读者可以只通过目标完成情况来判断每个维度项业务行为结果的好坏，而不用担心外部环境是否对此结果产生了干扰</p>
+<p>② 为了让目标值能够充分地减少或消除外部环境对分析主体的影响，就需要我们在设计目标值时充分考虑多方影响因素，让目标值既能体现合理公平的原则，又能发挥激励业务团队士气、督促员工努力的作用</p>
+<p>(5) 同环比计算方法<br>计算逻辑：<br>各个维度项当期的汇总值与各自以往同期的汇总值或上期的汇总值间的对比计算</p>
+<p>同期值：<br>一般指维度项在去年同期的汇总值</p>
+<p>上期值：<br>一般指维度项在上一个时间周期内的汇总值，在没有明确说明时间周期的间隔时，一般以一个月为一个时间周期<br>例如，某公司2025年3月销售额的同期值为该公司2024年3月销售额，而上期值为该公司2025年2月销售额</p>
+<p>使用目的：<br>同环比是维度项自己与自己比，当前自己的表现水平与过去自己的表现水平之间进行时间维度下对比的方法，目的是帮助阅读者了解维度项表现水平有没有随着时间的推移而得以提升:</p>
+<p>同环比指标值：</p>
+<ul>
+<li><strong>同环比差异值</strong>：当期汇总值 - 同期（上期）汇总值</li>
+<li><strong>同比增长率</strong>：（当期汇总值 - 同期汇总值）/ 同期汇总值 × 100%</li>
+<li><strong>环比增长率</strong>：（当期汇总值 - 上期汇总值）/ 上期汇总值 × 100%</li>
+</ul>
+<p>使用同环比指标值时的注意事项:<br>① 同环比计算方法一般适用于对长周期业务行为结果的观测，如果业务行为本身时间间隔太短，那么业务结果还无法显现出业务行为的特征，此时做同环比计算得到的结果，其业务意义不明显，参照价值较低</p>
+<p>② 在进行同环比分析时，应注意分析对象所处的大业务环境在对比期间有没有显著变化，若周围环境有显著变化，则同环比结果会受到环境变化的干扰而失去业务意义</p>
+<p>③ 在进行同环比分析时，还要注意分析对象有没有显著的短周期变化特征，如果有短周期变化特征，那么为了消除短周期变化的影响，应尽量使用同比；如果没有短周期变化特征，那么在描述近期内业务行为水平变化特征时应使用环比，在描述较大时间间隔下的行为水平变化特征时应使用同比</p>
+<h3><span id="12-%E5%9C%BA%E6%99%AF%E6%8C%87%E6%A0%87">1.2 场景指标</span></h3><p>(1) 客户分析类指标<br><em><strong>客户生命周期类指标</strong></em><br>新增客户数指标</p>
+<p>留存客户数指标</p>
+<p>流失客户数指标</p>
+<p><em><strong>客户行为类指标</strong></em><br>浏览量(PV)：单位时间内用户对店铺页面总的浏览数量</p>
+<p>访问数：从用户到达店铺或平台页面开始到用户离开店铺或平台页面的全过程称为一次访问</p>
+<p>平均访问深度: 浏览量/访问数</p>
+<p>跳失次数：用户点开平台页面没有任何点击直接关闭平台页面的行为称为跳失</p>
+<p>跳失率：跳失次数 / 访问数，即总访问次数中跳失行为出现的次数，该指标越大，说明总访问中无效的访问占比越多，访问店铺的用户中存在大量与店铺毫无黏性的低质量用户</p>
+<p>其他各种针对客户行为触点进行统计的指标：跳转次数、停留时长、访问间隔、搜索量、评论量、分享量、点击量、收藏量、付费转化率、退货率、退货量等</p>
+<p><em><strong>客户收入类指标</strong></em><br>客单价：客户单笔消费时贡献的价值，一般客单价高的客户群体通常会拥有较高的消费实力水平</p>
+<p>用户生命周期价值（Life Time Value，LTV）：用户在整个生命周期内创造的总价值</p>
+<p>用户平均收入（Average Revenue Per User，ARPU）：单位时间内每名用户带给企业的平均收入，用户平均收入 = 总收入 / 总用户数</p>
+<p><em><strong>客户成本类指标</strong></em><br>用户获取成本（Customer Acquisition Cost，CAC）：企业为获取客户支付的成本。如何能以更少的用户获取成本，获取到更多能带来更高用户生命周期价值的客户，是企业制订获客计划时的出发点</p>
+<p>线上行业中用户获取成本主要是在引流过程中企业为其他平台支付的费用：</p>
+<p>① CPM（Cost Per Mille）：按照广告每千次曝光收费。广告平台的广告每向用户展示1000次，收取1个CPM费用，该费用根据不同的平台定价不同</p>
+<p>② CPS（Cost Per Sales）：按照实际销售收费。广告平台的用户点击了广告，并发生了购买行为，广告平台将根据购买数量或购买金额收取1个CPS费用</p>
+<p>③ CPC（Cost Per Click）：按照点击次数收费。广告平台的用户点击、查看广告后支付1个CPC费用</p>
+<p>④ CPA（Cost Per Action）：按照用户完成特定行动收费。特定行动可以是注册、下载、表单提交等，广告平台根据用户完成指定行动的数量收取1个CPA费用。这种计费方式对广告主较为有利，因为只有在用户真正产生互动行为后才需要付费</p>
+<p>⑤ CPT（Cost Per Time）：按照广告展示时间收费。广告平台根据广告展示的时间周期（如按天、按周、按月）收取1个CPT费用。这种计费方式常见于门户网站或特定位置的品牌广告投放</p>
+<p>客户运营成本：为了延长用户生命周期，提高客户贡献价值而采取的运营行为所产生的成本</p>
+<p><em><strong>产品分析类指标</strong></em><br>产品进货类指标</p>
+<p>产品库存类指标</p>
+<p>产品销售类指标(售前，售中，售后)</p>
+<p><em><strong>业务行为分析类指标</strong></em><br>客户拜访次数：单位时间内，销售人员有效拜访客户的总次数，该指标主要用于对销售业务中销售人员执行力及销售积极性进行量化</p>
+<p>接通率：单位时间内，有效接通次数 / 打电话总次数 × 100%，该指标主要用于对电话销售人员的客户接通情况进行量化，该指标值越高，说明电话销售人员的话术水平越高，与客户间的通话质量越好</p>
+<p>回访次数：单位时间内，回访客户的总次数，该指标主要对销售人员的回访行为进行量化，回访次数多，对提高客户整体满意度及客户整体复购率等都有帮助</p>
+<p>引导客户注册人数：单位时间内，由店员引导客户注册为店铺会员的总人数，该指标主要用于量化线下餐饮、零售等行业中店铺店员的销售意识及引导水平的高低程度</p>
+<p>其他营销行为类指标：申请通过人数、审核人数、审核通过率、广告投放数、广告投放金额、成交单数、成交金额、成交率等</p>
+<p><em><strong>效果分析类指标</strong></em><br>(1)资产使用效率：</p>
+<p>资产周转率 = 主营业务收入或成本 / 资产平均余额</p>
+<p>资产周转率越高，说明资产盈利效率越高。在企业拥有的各类资产中，周转率高的资产属于企业的优质资产，拥有越多优质资产，企业盈利能力越强，市场竞争力越大</p>
+<p>投入产出比：单位时间内，收入总额 / 投入总成本 × 100%，该指标主要用于对资产的投资效果进行量化。投入产出比越高，说明投资产生的收益越大，被投资的资产的盈利效率越高。当投入产出比大于1时，企业才能创造利润</p>
+<p>坪效：销售额 / 营业面积，该指标主要用于对线下店铺使用面积创造营业收入的高低水平进行量化。坪效值越大，说明每单位营业面积能够带来的销售收入越高，店铺空间越被有效利用，店铺自身的盈利能力越强</p>
+<p>其他资产使用效率的效果分析类指标：店销、屏销、翻台率、上座率、资产利润率等</p>
+<p>(2)员工绩效水平：<br>业务员工绩效评分：该指标主要用于对非销售岗位的业务员工进行绩效评分</p>
+<p>销售目标完成率：销售总金额 / 销售目标总额 × 100%，该指标主要用于对销售岗位员工进行绩效考核</p>
+<p>连带率：单位时间内，产品销售数量 / 成交单数，该指标用于量化店铺店员连带产品销售能力水平的高低程度。连带率值越高，说明店员向客户推荐连带产品的能力水平越高，店员越有能力卖出大单，越能为企业创造更多收益。例如，当我们去服装店买裤子时，经常会遇到店员向我们推荐与裤子搭配得当的上衣的情况，如果我们也买了上衣，那我们为该店员创造的连带率就是2</p>
+<p>客户满意度：单位时间内或单次服务结束后，客户给予的满意度评分的平均值，该指标主要用于量化企业为客户提供的服务行为水平的高低程度。例如，培训机构给学员提供教学服务产品，在教学服务结束后，学员给予讲师的满意度评分越高，说明讲师的授课水平越高</p>
+<p>其他员工绩效的效果分析类指标：出勤率、迟到早退次数、失误率、被投诉次数等</p>
+<h2><span id="2-%E4%B8%9A%E5%8A%A1%E6%A8%A1%E5%9E%8B%E5%88%86%E6%9E%90">2 业务模型分析</span></h2><h3><span id="21-%E5%88%86%E7%B1%BB%E6%A8%A1%E5%9E%8B">2.1 分类模型</span></h3><p>(1) 客户分类模型<br>店铺依据客户贡献价值对用户分类时使用的业务模型称为用户贡献价值模型，示例图如下：<br><img data-fancybox="gallery" data-sizes="auto" data-src="/images/%E7%94%A8%E6%88%B7%E8%B4%A1%E7%8C%AE%E4%BB%B7%E5%80%BC%E6%A8%A1%E5%9E%8B.png" alt="用户贡献价值" class="lazyload"></p>
+<p>RFM模型：</p>
+<table>
+<thead>
+<tr>
+<th align="left">用户类别</th>
+<th align="left">R值</th>
+<th align="left">F值</th>
+<th align="left">M值</th>
+<th align="left">运营策略</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">重要价值用户</td>
+<td align="left">高</td>
+<td align="left">高</td>
+<td align="left">高</td>
+<td align="left">保持现状</td>
+</tr>
+<tr>
+<td align="left">重要发展用户</td>
+<td align="left">高</td>
+<td align="left">低</td>
+<td align="left">高</td>
+<td align="left">提升频次</td>
+</tr>
+<tr>
+<td align="left">重要保持用户</td>
+<td align="left">低</td>
+<td align="left">高</td>
+<td align="left">高</td>
+<td align="left">用户回流</td>
+</tr>
+<tr>
+<td align="left">重要挽留用户</td>
+<td align="left">低</td>
+<td align="left">低</td>
+<td align="left">高</td>
+<td align="left">重点召回</td>
+</tr>
+<tr>
+<td align="left">一般价值用户</td>
+<td align="left">高</td>
+<td align="left">高</td>
+<td align="left">低</td>
+<td align="left">刺激消费</td>
+</tr>
+<tr>
+<td align="left">一般发展用户</td>
+<td align="left">高</td>
+<td align="left">低</td>
+<td align="left">低</td>
+<td align="left">挖掘需求</td>
+</tr>
+<tr>
+<td align="left">一般保持用户</td>
+<td align="left">低</td>
+<td align="left">高</td>
+<td align="left">低</td>
+<td align="left">流失召回</td>
+</tr>
+<tr>
+<td align="left">一般挽留用户</td>
+<td align="left">低</td>
+<td align="left">低</td>
+<td align="left">低</td>
+<td align="left">不再尝试挽回</td>
+</tr>
+<tr>
+<td align="left"><strong>注：</strong></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>R值</strong>（Recency）：最近一次消费时间间隔，值越高表示最近有消费</li>
+<li><strong>F值</strong>（Frequency）：消费频率，值越高表示消费次数越多</li>
+<li><strong>M值</strong>（Monetary）：消费金额，值越高表示消费金额越大</li>
+</ul>
+<p>用户忠诚度模型：<br><img data-fancybox="gallery" data-sizes="auto" data-src="/images/%E7%94%A8%E6%88%B7%E5%BF%A0%E8%AF%9A%E5%BA%A6%E6%A8%A1%E5%9E%8B.png" alt="用户忠诚度" class="lazyload"></p>
+<p>(2) 产品分类模型<br>波士顿矩阵：<br><img data-fancybox="gallery" data-sizes="auto" data-src="/images/%E6%B3%A2%E5%A3%AB%E9%A1%BF%E7%9F%A9%E9%98%B5%E6%A8%A1%E5%9E%8B.png" alt="波士顿矩阵" class="lazyload"></p>
+<h3><span id="22-%E6%BC%8F%E6%96%97%E6%A8%A1%E5%9E%8B">2.2 漏斗模型</span></h3><p>关系型销售模式下的漏斗模型：<br><img data-fancybox="gallery" data-sizes="auto" data-src="/images/%E6%BC%8F%E6%96%97%E6%A8%A1%E5%9E%8B.png" alt="漏斗模型" class="lazyload"></p>
+<p>在销售漏斗中，我们主要观测漏斗的粗细、斜率、体形与流速 4 个方面。形状越粗、斜率越小、体形越匀称、流速越快的漏斗越是理想漏斗，反之则需要进行改进</p>
+<p><em><strong>粗细</strong></em><br>漏斗的容量，在销售漏斗中是指发现商机的数量。如果我们发现的商机足够多，那么即便在销售过程中流失的商机多一点，最后还是能获得足以达到销售目标的成交金额</p>
+<p><em><strong>斜率</strong></em><br>连接相邻两个阶段接点切线与垂直线间构成的角度，斜率越大，说明相邻两个阶段过渡过程中流失的商机数量越多，我们就需要想办法及时为这两个阶段止损，因为最后的成交是每个阶段按顺序递进而来的，所以如果上边阶段中商机流失严重，就会影响最后成交的商机数量。通过观察斜率的大小，可以精准定位重要的问题阶段，利用精准的行为进行调整，让每个重点阶段的问题都能得到及时解决</p>
+<p><em><strong>体形</strong></em><br>销售漏斗的体形应尽量保持均匀。体形均匀是指各阶段商机数量均匀递减，每个销售阶段的斜率都不会出现过大或者过小的分布情况。漏斗体形越均匀，越有助于销售团队制定稳定、好执行的销售策略</p>
+<p>因为在实际业务场景中有可能出现后退、跳跃等情况，所以最终完全有可能出现漏斗图中下边阶段数据条的长度比上边阶段数据条的长度更长的情况。该情况代表漏斗图体形分布极不匀称，说明上边阶段没有发挥应有的作用，遇到这种问题，应及时调整业务策略，让漏斗图的体形尽可能维持在逐层递减、均匀分布的良好状态</p>
+<p><em><strong>流速</strong></em><br>需要加入时间轴才能体现流速情况。商机在每个阶段转化所需要的时间越短，流速越快，从发现潜在商机到成交的用时越短，单位时间内能够运作的商机越多，在单位时间内获得收益越大</p>
+<p>用户行为漏斗模型：<br><img data-fancybox="gallery" data-sizes="auto" data-src="/images/%E7%94%A8%E6%88%B7%E8%A1%8C%E4%B8%BA%E6%BC%8F%E6%96%97.png" alt="用户行为漏斗模型" class="lazyload"></p>
+<p>AARRR模型：<br><img data-fancybox="gallery" data-sizes="auto" data-src="/images/AARRR.png" alt="AARRR模型" class="lazyload"><br>Acquisition（用户获取）：<br>用户运营的第一步是获取用户，电商的用户都是获取来的，所以该阶段人数最多，但黏性弱、易流失</p>
+<p>Activation（用户激活）：<br>该阶段主要运营目的是提高用户活跃度、唤醒率等，在该阶段未能激活、唤醒的用户会变为沉默或流失用户，所以用户人数比用户获取阶段少，但是在该阶段被成功激活的用户，他们的黏性要比用户获取阶段强</p>
+<p>Retention（用户留存）：<br>该阶段主要运营目的是提高用户留存率、召回率，在该阶段未能留住或召回的用户会变为流失用户，人数相较于用户激活阶段会更少一些，但是该阶段留存下来的用户黏性会比用户激活阶段更强一些</p>
+<p>Revenue（用户获益）：<br>该阶段主要运营目的是提高客单价、付费转化率。能够成功提高用户的付费转化率及客单价的前提是需要用户具有更强的黏性，这样的用户人数占比往往不会很高。所以该阶段特征是用户黏性强，但人数少。</p>
+<p>Refer（推荐传播）：<br>只有具备强黏性的一个小部分用户才愿意将电商平台推荐给自己身边其他的朋友。所以该阶段人数最少、黏性最强。量化该阶段推荐传播效果的指标称为 <strong>K 因子</strong>。其计算公式是：<br>[ K = \text{每个用户向他的朋友们发出的邀请的数量} \times \text{接收到邀请的人转化为新用户的转化率} ]</p>
+<ul>
+<li>当 ( K &gt; 1 ) 时，推荐传播带来的新用户增长效果会越来越好；</li>
+<li>当 ( K &lt; 1 ) 时，推荐传播带来的新用户增长效果会越来越差；</li>
+<li>当 ( K = 1 ) 时，推荐传播带来的新用户增长效果处于平衡稳定状态</li>
+</ul>
+<h2><span id="3-%E4%B8%9A%E5%8A%A1%E8%A1%8C%E4%B8%BA%E6%96%B9%E6%B3%95%E8%AE%BA">3 业务行为方法论</span></h2><h3><span id="31-%E5%B8%95%E7%B4%AF%E6%89%98%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95">3.1 帕累托分析方法</span></h3><p>又称二八分析方法<br>帕累托分析方法是将帕累托法则反向应用，以帮助分析人员定位影响业务结果的关键业务对象时使用的分析方法。既然少数关键对象能够产生 80% 的业务结果，那么我们就将 80% 业务结果线反向作为界定业务关键对象的分水岭，在达到 80% 业务结果线为止的业务贡献水平最多的前 ( N ) 个业务对象就可以被定义为关键业务对象，找准关键业务对象后就可以在分析业务问题时着重围绕这些对象的业务行为结果进行深入分析</p>
+<h3><span id="32-ab%E6%B5%8B%E8%AF%95%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95">3.2 A/B测试分析方法</span></h3><p>A/B 测试是一种通过对比实验来进行业务决策的方法。其基本思路是：先为一个业务目的选择两种较为可行的业务方案，然后将参与测试的对象人群分为两组，让一组人群使用 A 方案，让另一组人群使用 B 方案，最终根据不同人群反馈的测试结果选择更好的方案使用</p>
+<p>A/B 测试的完整流程可以分为以下 4 个步骤：</p>
+<p>步骤 1：明确测试目的<br>根据测试要达到的效果、决策者的业务决策内容等对业务目的进行精准定义</p>
+<p>步骤 2：明确测试对象<br>决定测试人群及人群的分组条件</p>
+<p>步骤 3：明确测试内容<br>明确测试项、测试结果收集方案、测试周期、测试有效性评判标准等内容</p>
+<p>4：测试结果分析</p>
+<ul>
+<li>在进行较为复杂的 A/B 测试时，一般会用到统计学中的假设检验的方法</li>
+<li>如果是较为简单、直接的 A/B 测试，可以制作简单的评分表，通过评分表得分的高低来进行比较分析</li>
+</ul>
+<p>补充说明<br>A/B 测试不一定是两套方案，也可以是多套方案针对不同人群一起进行测试分析</p>
+<h3><span id="33-%E5%90%8C%E6%9C%9F%E7%BE%A4%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95">3.3 同期群分析方法：</span></h3><p>同期群是指相同时间内具有相同特征属性的客户群组。同期群的分析步骤是先将客户分为不同的同期群组，再进一步分析每个群组的客户行为在时间轴下发生了什么样的变化，从而进一步找到不同群组客户行为变化的特征</p>
+<p>同期群分析对不同群组在相同时间段内的持续行为差异进行衡量，帮助分析人员精确识别每个群体的行为特征，为进一步选择正确、有效的行为方式提供数据依据</p>
+<h3><span id="34-%E5%9B%A0%E6%9E%9C%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95">3.4 因果分析方法：</span></h3><p>因果分析师通过指标间的相互作用关系定位业务问题点的方法</p>
+</body></html>
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>本文作者：</strong>Xiao Qing<br>
+        <strong>本文链接：</strong><a href="https://chenjia-q.github.io/post/business-analysis.html" title="https:&#x2F;&#x2F;chenjia-q.github.io&#x2F;post&#x2F;business-analysis.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;chenjia-q.github.io&#x2F;post&#x2F;business-analysis.html</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/%E4%B8%9A%E5%8A%A1%E5%88%86%E6%9E%90/" rel="tag">业务分析</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+		
+	<link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css" />
+	<div id="gitalk"></div>
+	<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+	<script type="text/javascript">
+		const gitalk = new Gitalk({
+			clientID: 'Ov23ligqH2phvfWqedFc',
+			clientSecret: '06a62ec6e5b639e05d1a7519e01886456a0cf12a',
+			id: '业务分析',
+			repo: 'laughing-octo-eureka',
+			owner: 'chenjia-q-',
+			admin: 'chenjia-q',
+			title: '博客评论',
+		});
+		gitalk.render('gitalk');
+	</script>
+
+
+		
+	<div class="giscus"></div>
+  
+    <script src="https://giscus.app/client.js"
+      data-repo="chenjia-q/laughing-octo-eureka"
+      data-repo-id="R_kgDOQrmE2g"
+      data-category="Announcements"
+      data-category-id="DIC_kwDOQrmE2s4C1tY6"
+      data-mapping="pathname"
+      data-strict="0"
+      data-reactions-enabled="1"
+      data-emit-metadata="0"
+      data-input-position="top"
+      data-theme="light"
+      data-lang="en"
+      data-loading="lazy"
+      crossorigin="anonymous"
+      async  
+    ></script>
+  
+
+	</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>
